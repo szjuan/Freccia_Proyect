@@ -1,9 +1,13 @@
-#pragma once
+#ifndef DATACLEANER_H
+#define DATACLEANER_H
+
+#include "GPSData.h"
 #include <vector>
-#include "SensorData.h"
 
 class DataCleaner {
 public:
-    static void clean(std::vector<SensorData>& data);
-    static void applyMovingAverage(std::vector<SensorData>& data, int windowSize = 5);
+    void clean(std::vector<GPSData>& data);
+    void applyMovingAverage(std::vector<GPSData>& data, int windowSize); // No aplica, pero mantenido por estructura
 };
+
+#endif
