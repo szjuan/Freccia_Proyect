@@ -69,24 +69,10 @@ include CMakeFiles/Atenea.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Atenea.dir/flags.make
 
-CMakeFiles/Atenea.dir/src/CSVReader.cpp.o: CMakeFiles/Atenea.dir/flags.make
-CMakeFiles/Atenea.dir/src/CSVReader.cpp.o: /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/CSVReader.cpp
-CMakeFiles/Atenea.dir/src/CSVReader.cpp.o: CMakeFiles/Atenea.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Atenea.dir/src/CSVReader.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Atenea.dir/src/CSVReader.cpp.o -MF CMakeFiles/Atenea.dir/src/CSVReader.cpp.o.d -o CMakeFiles/Atenea.dir/src/CSVReader.cpp.o -c /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/CSVReader.cpp
-
-CMakeFiles/Atenea.dir/src/CSVReader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Atenea.dir/src/CSVReader.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/CSVReader.cpp > CMakeFiles/Atenea.dir/src/CSVReader.cpp.i
-
-CMakeFiles/Atenea.dir/src/CSVReader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Atenea.dir/src/CSVReader.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/CSVReader.cpp -o CMakeFiles/Atenea.dir/src/CSVReader.cpp.s
-
 CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o: CMakeFiles/Atenea.dir/flags.make
 CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o: /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/DataCleaner.cpp
 CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o: CMakeFiles/Atenea.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o -MF CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o.d -o CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o -c /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/DataCleaner.cpp
 
 CMakeFiles/Atenea.dir/src/DataCleaner.cpp.i: cmake_force
@@ -100,7 +86,7 @@ CMakeFiles/Atenea.dir/src/DataCleaner.cpp.s: cmake_force
 CMakeFiles/Atenea.dir/src/FileHelper.cpp.o: CMakeFiles/Atenea.dir/flags.make
 CMakeFiles/Atenea.dir/src/FileHelper.cpp.o: /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/FileHelper.cpp
 CMakeFiles/Atenea.dir/src/FileHelper.cpp.o: CMakeFiles/Atenea.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Atenea.dir/src/FileHelper.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Atenea.dir/src/FileHelper.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Atenea.dir/src/FileHelper.cpp.o -MF CMakeFiles/Atenea.dir/src/FileHelper.cpp.o.d -o CMakeFiles/Atenea.dir/src/FileHelper.cpp.o -c /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/FileHelper.cpp
 
 CMakeFiles/Atenea.dir/src/FileHelper.cpp.i: cmake_force
@@ -110,6 +96,20 @@ CMakeFiles/Atenea.dir/src/FileHelper.cpp.i: cmake_force
 CMakeFiles/Atenea.dir/src/FileHelper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Atenea.dir/src/FileHelper.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/FileHelper.cpp -o CMakeFiles/Atenea.dir/src/FileHelper.cpp.s
+
+CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o: CMakeFiles/Atenea.dir/flags.make
+CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o: /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/GPSCSVReader.cpp
+CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o: CMakeFiles/Atenea.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o -MF CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o.d -o CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o -c /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/GPSCSVReader.cpp
+
+CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/GPSCSVReader.cpp > CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.i
+
+CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/GPSCSVReader.cpp -o CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.s
 
 CMakeFiles/Atenea.dir/src/main.cpp.o: CMakeFiles/Atenea.dir/flags.make
 CMakeFiles/Atenea.dir/src/main.cpp.o: /home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/src/main.cpp
@@ -127,17 +127,17 @@ CMakeFiles/Atenea.dir/src/main.cpp.s: cmake_force
 
 # Object files for target Atenea
 Atenea_OBJECTS = \
-"CMakeFiles/Atenea.dir/src/CSVReader.cpp.o" \
 "CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o" \
 "CMakeFiles/Atenea.dir/src/FileHelper.cpp.o" \
+"CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o" \
 "CMakeFiles/Atenea.dir/src/main.cpp.o"
 
 # External object files for target Atenea
 Atenea_EXTERNAL_OBJECTS =
 
-Atenea: CMakeFiles/Atenea.dir/src/CSVReader.cpp.o
 Atenea: CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o
 Atenea: CMakeFiles/Atenea.dir/src/FileHelper.cpp.o
+Atenea: CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o
 Atenea: CMakeFiles/Atenea.dir/src/main.cpp.o
 Atenea: CMakeFiles/Atenea.dir/build.make
 Atenea: CMakeFiles/Atenea.dir/link.txt

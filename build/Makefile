@@ -129,30 +129,6 @@ Atenea/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/build
 .PHONY : Atenea/fast
 
-src/CSVReader.o: src/CSVReader.cpp.o
-.PHONY : src/CSVReader.o
-
-# target to build an object file
-src/CSVReader.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/src/CSVReader.cpp.o
-.PHONY : src/CSVReader.cpp.o
-
-src/CSVReader.i: src/CSVReader.cpp.i
-.PHONY : src/CSVReader.i
-
-# target to preprocess a source file
-src/CSVReader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/src/CSVReader.cpp.i
-.PHONY : src/CSVReader.cpp.i
-
-src/CSVReader.s: src/CSVReader.cpp.s
-.PHONY : src/CSVReader.s
-
-# target to generate assembly for a file
-src/CSVReader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/src/CSVReader.cpp.s
-.PHONY : src/CSVReader.cpp.s
-
 src/DataCleaner.o: src/DataCleaner.cpp.o
 .PHONY : src/DataCleaner.o
 
@@ -201,6 +177,30 @@ src/FileHelper.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/src/FileHelper.cpp.s
 .PHONY : src/FileHelper.cpp.s
 
+src/GPSCSVReader.o: src/GPSCSVReader.cpp.o
+.PHONY : src/GPSCSVReader.o
+
+# target to build an object file
+src/GPSCSVReader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o
+.PHONY : src/GPSCSVReader.cpp.o
+
+src/GPSCSVReader.i: src/GPSCSVReader.cpp.i
+.PHONY : src/GPSCSVReader.i
+
+# target to preprocess a source file
+src/GPSCSVReader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.i
+.PHONY : src/GPSCSVReader.cpp.i
+
+src/GPSCSVReader.s: src/GPSCSVReader.cpp.s
+.PHONY : src/GPSCSVReader.s
+
+# target to generate assembly for a file
+src/GPSCSVReader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.s
+.PHONY : src/GPSCSVReader.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -234,15 +234,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Atenea"
-	@echo "... src/CSVReader.o"
-	@echo "... src/CSVReader.i"
-	@echo "... src/CSVReader.s"
 	@echo "... src/DataCleaner.o"
 	@echo "... src/DataCleaner.i"
 	@echo "... src/DataCleaner.s"
 	@echo "... src/FileHelper.o"
 	@echo "... src/FileHelper.i"
 	@echo "... src/FileHelper.s"
+	@echo "... src/GPSCSVReader.o"
+	@echo "... src/GPSCSVReader.i"
+	@echo "... src/GPSCSVReader.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

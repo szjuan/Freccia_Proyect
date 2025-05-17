@@ -1,12 +1,12 @@
 file(REMOVE_RECURSE
   "Atenea"
   "Atenea.pdb"
-  "CMakeFiles/Atenea.dir/src/CSVReader.cpp.o"
-  "CMakeFiles/Atenea.dir/src/CSVReader.cpp.o.d"
   "CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o"
   "CMakeFiles/Atenea.dir/src/DataCleaner.cpp.o.d"
   "CMakeFiles/Atenea.dir/src/FileHelper.cpp.o"
   "CMakeFiles/Atenea.dir/src/FileHelper.cpp.o.d"
+  "CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o"
+  "CMakeFiles/Atenea.dir/src/GPSCSVReader.cpp.o.d"
   "CMakeFiles/Atenea.dir/src/main.cpp.o"
   "CMakeFiles/Atenea.dir/src/main.cpp.o.d"
 )
