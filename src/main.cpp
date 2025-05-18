@@ -1,13 +1,24 @@
-#include <iostream>
+#include <QGuiApplication>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include "GPSCSVReader.h"
 #include "DataCleaner.h"
 
-int main() {
-    GPSCSVReader reader("../data/gps_log.csv");
-    std::vector<GPSData> datos = reader.readAll();
+int main(int argc, char *argv[]) {
+    QGuiApplication app(argc, argv);
+    QQmlApplicationEngine engine;
 
-    DataCleaner cleaner;
-    cleaner.clean(datos);
+    // TODO: Aquí luego pasaremos datos desde C++ a QML
 
-    return 0;
+    const QUrl url(QStringLiteral("qrc:/qml/Main.qml"));
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
+                     &app, [url](QObject *obj, const QUrl &objUrl) {
+        if (!obj && url == objUrl)
+            QCoreApplication::exit(-1);
+    }, Qt::QueuedConnection);
+
+    engine.load(url);
+
+    return app.exec();
 }

@@ -129,6 +129,56 @@ Atenea/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/build
 .PHONY : Atenea/fast
 
+#=============================================================================
+# Target rules for targets named Atenea_other_files
+
+# Build rule for target.
+Atenea_other_files: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Atenea_other_files
+.PHONY : Atenea_other_files
+
+# fast build rule for target.
+Atenea_other_files/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea_other_files.dir/build.make CMakeFiles/Atenea_other_files.dir/build
+.PHONY : Atenea_other_files/fast
+
+#=============================================================================
+# Target rules for targets named Atenea_qmlimportscan
+
+# Build rule for target.
+Atenea_qmlimportscan: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Atenea_qmlimportscan
+.PHONY : Atenea_qmlimportscan
+
+# fast build rule for target.
+Atenea_qmlimportscan/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea_qmlimportscan.dir/build.make CMakeFiles/Atenea_qmlimportscan.dir/build
+.PHONY : Atenea_qmlimportscan/fast
+
+build/.rcc/qrc_qml_resources.o: build/.rcc/qrc_qml_resources.cpp.o
+.PHONY : build/.rcc/qrc_qml_resources.o
+
+# target to build an object file
+build/.rcc/qrc_qml_resources.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/build/.rcc/qrc_qml_resources.cpp.o
+.PHONY : build/.rcc/qrc_qml_resources.cpp.o
+
+build/.rcc/qrc_qml_resources.i: build/.rcc/qrc_qml_resources.cpp.i
+.PHONY : build/.rcc/qrc_qml_resources.i
+
+# target to preprocess a source file
+build/.rcc/qrc_qml_resources.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/build/.rcc/qrc_qml_resources.cpp.i
+.PHONY : build/.rcc/qrc_qml_resources.cpp.i
+
+build/.rcc/qrc_qml_resources.s: build/.rcc/qrc_qml_resources.cpp.s
+.PHONY : build/.rcc/qrc_qml_resources.s
+
+# target to generate assembly for a file
+build/.rcc/qrc_qml_resources.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Atenea.dir/build.make CMakeFiles/Atenea.dir/build/.rcc/qrc_qml_resources.cpp.s
+.PHONY : build/.rcc/qrc_qml_resources.cpp.s
+
 src/DataCleaner.o: src/DataCleaner.cpp.o
 .PHONY : src/DataCleaner.o
 
@@ -233,7 +283,12 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... Atenea_other_files"
+	@echo "... Atenea_qmlimportscan"
 	@echo "... Atenea"
+	@echo "... build/.rcc/qrc_qml_resources.o"
+	@echo "... build/.rcc/qrc_qml_resources.i"
+	@echo "... build/.rcc/qrc_qml_resources.s"
 	@echo "... src/DataCleaner.o"
 	@echo "... src/DataCleaner.i"
 	@echo "... src/DataCleaner.s"
