@@ -1,34 +1,54 @@
+# Copyright (C) 2022 The Qt Company Ltd.
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
+
 cmake_minimum_required(VERSION 3.16)
-project(AteneaUI LANGUAGES CXX)
+project(audio LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if(NOT DEFINED INSTALL_EXAMPLESDIR)
+    set(INSTALL_EXAMPLESDIR "examples")
+endif()
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2)
+set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/charts/audio")
 
-include_directories(include)
+find_package(Qt6 REQUIRED COMPONENTS Charts Core Gui SerialPort)
 
-file(GLOB SOURCES "src/*.cpp")
+qt_standard_project_setup()
 
-qt_add_executable(Atenea
-    ${SOURCES}
-    resources/resources.qrc 
+qt_add_executable(
+audio
+main.cpp
+widget.cpp
+SensorManager.cpp
+xyseriesiodevice.cpp
+data/DataCleaner.cpp
+data/FileHelper.cpp
+data/GPSCSVReader.cpp
+widget.h
+SensorManager.h
+SerialReader.cpp
+SerialReader.h
+SensorData.h
+data/DataCleaner.h
+data/FileHelper.h
+data/GPSCSVReader.h
+data/GPSData.h
+xyseriesiodevice.h)
+
+set_target_properties(audio PROPERTIES
+    WIN32_EXECUTABLE TRUE
+    MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/apple/Info.cmake.plist"
 )
 
-# Agrega recursos QML (.qrc)
-qt6_add_resources(Atenea qml_resources
-    PREFIX "/qml"
-    FILES
-        qml/Main.qml
-        qml/ChartView.qml
-        qml/MapView.qml
+target_link_libraries(audio PUBLIC
+    Qt::Charts
+    Qt::Core
+    Qt::Gui
+    Qt::SerialPort
 )
 
-# Linkea con bibliotecas Qt necesarias
-target_link_libraries(Atenea PRIVATE
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Qml
-    Qt6::Quick
-    Qt6::QuickControls2
+install(TARGETS audio
+    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
+    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
+    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )

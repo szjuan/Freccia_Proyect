@@ -1,8 +1,0 @@
-<RCC>
-  <qresource prefix="/qml">
-    <file alias="qml/Main.qml">/home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/qml/Main.qml</file>
-    <file alias="qml/ChartView.qml">/home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/qml/ChartView.qml</file>
-    <file alias="qml/MapView.qml">/home/apolo/Documents/GitGub/Atenea_Proyect/Code/Atenea_UI/qml/MapView.qml</file>
-  </qresource>
-</RCC>
-
