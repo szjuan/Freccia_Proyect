@@ -1,0 +1,22 @@
+# ninja log v6
+11	2488	7700141600574619	GUI_FRECCIA_autogen/timestamp	272e41137b0816e8
+11	2488	7700141600574619	GUI_FRECCIA_autogen/mocs_compilation.cpp	272e41137b0816e8
+11	2488	7700141600574619	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/GUI_FRECCIA_autogen/timestamp	272e41137b0816e8
+11	2488	7700141600574619	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/GUI_FRECCIA_autogen/mocs_compilation.cpp	272e41137b0816e8
+2502	2584	7700141603155478	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/.rcc/qrc_resources.cpp	eaa9a3f7e1079b80
+2502	2584	7700141603155478	.rcc/qrc_resources.cpp	eaa9a3f7e1079b80
+2620	3453	7700141603600649	CMakeFiles/GUI_FRECCIA.dir/Source_Files/data/GPSCSVReader.cpp.obj	e5398af3b9d9d5c
+2624	3850	7700141603650658	CMakeFiles/GUI_FRECCIA.dir/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/.rcc/qrc_resources.cpp.obj	f8357662e63ba016
+2615	4120	7700141603560640	CMakeFiles/GUI_FRECCIA.dir/Source_Files/data/FileHelper.cpp.obj	cc783d1c5e3cd953
+2611	4182	7700141603520633	CMakeFiles/GUI_FRECCIA.dir/Source_Files/data/DataCleaner.cpp.obj	13c2ed0b0b110271
+2607	5043	7700141603470619	CMakeFiles/GUI_FRECCIA.dir/Source_Files/SerialReader.cpp.obj	4df3053c7b9fb6a5
+2598	5087	7700141603380611	CMakeFiles/GUI_FRECCIA.dir/Source_Files/SensorManager.cpp.obj	a9e5fd8246052839
+2602	5445	7700141603430612	CMakeFiles/GUI_FRECCIA.dir/Source_Files/xyseriesiodevice.cpp.obj	57abd98cd144fb7
+2589	10522	7700141603290580	CMakeFiles/GUI_FRECCIA.dir/Source_Files/main.cpp.obj	ea082a3c92e1c75
+2584	10595	7700141603250573	CMakeFiles/GUI_FRECCIA.dir/GUI_FRECCIA_autogen/mocs_compilation.cpp.obj	640dfd76010c92a8
+2593	10681	7700141603340591	CMakeFiles/GUI_FRECCIA.dir/Source_Files/widget.cpp.obj	eaa9d57f6c60961d
+34	231	7700143315253476	GUI_FRECCIA_autogen/timestamp	272e41137b0816e8
+34	231	7700143315253476	GUI_FRECCIA_autogen/mocs_compilation.cpp	272e41137b0816e8
+34	231	7700143315253476	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/GUI_FRECCIA_autogen/timestamp	272e41137b0816e8
+34	231	7700143315253476	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/GUI_FRECCIA_autogen/mocs_compilation.cpp	272e41137b0816e8
+232	597	7700143317234047	GUI_FRECCIA.exe	1ba5f1435999fa74

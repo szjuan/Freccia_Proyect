@@ -1,53 +1,67 @@
-# Copyright (C) 2022 The Qt Company Ltd.
-# SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
-
 cmake_minimum_required(VERSION 3.16)
-project(audio LANGUAGES CXX)
+project(GUI_FRECCIA LANGUAGES CXX)
 
 if(NOT DEFINED INSTALL_EXAMPLESDIR)
     set(INSTALL_EXAMPLESDIR "examples")
 endif()
 
-set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/charts/audio")
+set(INSTALL_EXAMPLEDIR "${INSTALL_EXAMPLESDIR}/charts/GUI_FRECCIA")
 
-find_package(Qt6 REQUIRED COMPONENTS Charts Core Gui SerialPort)
+find_package(Qt6 REQUIRED COMPONENTS Charts Core Gui SerialPort DataVisualization)
 
 qt_standard_project_setup()
 
-qt_add_executable(
-audio
-main.cpp
-widget.cpp
-SensorManager.cpp
-xyseriesiodevice.cpp
-data/DataCleaner.cpp
-data/FileHelper.cpp
-data/GPSCSVReader.cpp
-widget.h
-SensorManager.h
-SerialReader.cpp
-SerialReader.h
-SensorData.h
-data/DataCleaner.h
-data/FileHelper.h
-data/GPSCSVReader.h
-data/GPSData.h
-xyseriesiodevice.h)
+qt_add_executable(GUI_FRECCIA
+  Source_Files/main.cpp
+  Source_Files/widget.cpp
+  Source_Files/SensorManager.cpp
+  Source_Files/xyseriesiodevice.cpp
+  Source_Files/SerialReader.cpp
 
-set_target_properties(audio PROPERTIES
+  Source_Files/data/DataCleaner.cpp
+  Source_Files/data/FileHelper.cpp
+  Source_Files/data/GPSCSVReader.cpp
+
+  Header_Files/widget.h
+  Header_Files/SensorManager.h
+  Header_Files/xyseriesiodevice.h
+  Header_Files/SerialReader.h
+
+  Header_Files/data/DataCleaner.h
+  Header_Files/data/FileHelper.h
+  Header_Files/data/GPSCSVReader.h
+  Header_Files/data/GPSData.h
+  Header_Files/data/SensorData.h
+)
+
+qt_add_resources(GUI_FRECCIA "resources"
+    PREFIX "/assets"
+    FILES
+        assets/logo_xae.png
+)
+
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/Header_Files
+    ${CMAKE_CURRENT_SOURCE_DIR}/Header_Files/data
+)
+
+
+set_target_properties(GUI_FRECCIA PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
     MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/apple/Info.cmake.plist"
 )
 
-target_link_libraries(audio PUBLIC
+target_link_libraries(GUI_FRECCIA PUBLIC
     Qt::Charts
     Qt::Core
     Qt::Gui
+    Qt::Widgets
     Qt::SerialPort
+    Qt::DataVisualization
 )
 
-install(TARGETS audio
+install(TARGETS GUI_FRECCIA
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"

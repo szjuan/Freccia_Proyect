@@ -1,0 +1,9 @@
+C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/CMakeFiles/GUI_FRECCIA.dir
+C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/CMakeFiles/edit_cache.dir
+C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/CMakeFiles/list_install_components.dir
+C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/CMakeFiles/install.dir
+C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/CMakeFiles/install/local.dir
+C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/CMakeFiles/install/strip.dir
+C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/CMakeFiles/GUI_FRECCIA_autogen_timestamp_deps.dir
+C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit_qt_qt6-Debug/CMakeFiles/GUI_FRECCIA_autogen.dir
