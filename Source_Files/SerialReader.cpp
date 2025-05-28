@@ -8,7 +8,7 @@ SerialReader::SerialReader(QObject* parent) : QObject(parent) {
 
 void SerialReader::start(const QString& portName) {
     m_serialPort->setPortName(portName);
-    m_serialPort->setBaudRate(QSerialPort::Baud9600);  // ajusta si usas otra velocidad
+    m_serialPort->setBaudRate(QSerialPort::Baud115200);  // ajusta si usas otra velocidad
     m_serialPort->setDataBits(QSerialPort::Data8);
     m_serialPort->setParity(QSerialPort::NoParity);
     m_serialPort->setStopBits(QSerialPort::OneStop);

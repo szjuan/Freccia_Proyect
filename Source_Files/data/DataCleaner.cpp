@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <numeric>
 #include <iomanip>
+#include <filesystem>
 
 std::string getCurrentTimestamp() {
     auto now = std::chrono::system_clock::now();
@@ -23,6 +24,10 @@ void DataCleaner::clean(std::vector<GPSData>& data) {
     std::vector<GPSData> cleaned;
     const std::string errorFilePath = "../data/errores_gps.csv";
     const std::string cleanFilePath = "../data/clean_gps.csv";
+    const std::string folderPath = "../data";
+
+    std::filesystem::create_directories(folderPath);  // << esto soluciona el problema
+
     int errores = 0;
     std::string timestamp = getCurrentTimestamp();
 
@@ -37,24 +42,33 @@ void DataCleaner::clean(std::vector<GPSData>& data) {
 
     errorFile << "\n------------------Procesamiento: " << timestamp << " ------------------ \n";
 
-    for (const auto& d : data) {
+    for (auto& d : data) {
         bool valid = true;
 
-        if (d.latitude < -90 || d.latitude > 90) valid = false;
-        if (d.longitude < -180 || d.longitude > 180) valid = false;
-        if (d.satellites <= 0) valid = false;
-        if (d.hdop <= 0 || d.hdop > 20) valid = false;
+        if (d.latitude < -90 || d.latitude > 90) {
+            d.latitude = 0;
+            valid = false;
+        }
+        if (d.longitude < -180 || d.longitude > 180) {
+            d.longitude = 0;
+            valid = false;
+        }
+        if (d.satellites <= 0) {
+            d.satellites = 0;
+            valid = false;
+        }
+        if (d.hdop <= 0 || d.hdop > 20) {
+            d.hdop = 0;
+            valid = false;
+        }
 
-        if (valid) {
-            cleaned.push_back(d);
-            std::cout << "Lat: " << d.latitude << ", Lon: " << d.longitude
-                      << ", Fecha: " << d.date << ", Hora: " << d.utc_time
-                      << ", Satélites: " << d.satellites << ", HDOP: " << d.hdop << "\n";
-        } else {
+        if (!valid) {
             ++errores;
             errorFile << d.latitude << "," << d.longitude << "," << d.date << "," << d.utc_time << ","
                       << d.satellites << "," << d.hdop << "\n";
         }
+
+        cleaned.push_back(d);  // SIEMPRE lo agregas, esté corregido o no
     }
 
     errorFile << "Número de datos con errores: " << errores << "\n";

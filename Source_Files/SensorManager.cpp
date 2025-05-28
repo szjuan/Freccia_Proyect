@@ -1,15 +1,24 @@
 #include "SensorManager.h"
 #include <QStringList>
+#include <fstream>
+#include <filesystem>
 
 SensorManager::SensorManager(QObject* parent) : QObject(parent) {
     m_serialReader = new SerialReader(this);
     connect(m_serialReader, &SerialReader::dataReceived, this, &SensorManager::processRawData);
-    m_serialReader->start("COM4");
+    m_serialReader->start("COM6");
+
+    rawFile.open("..\data\datos_raw.csv", std::ios::app);
+    if (rawFile.tellp() == 0) {
+        rawFile << "Latitud,Longitud,Fecha,HoraUTC,Segundos,Satélites,HDOP,Roll,Pitch,Yaw,Servo1,Servo2,Servo3,Servo4,AltDiff\n";
+    }
 }
 
 void SensorManager::processRawData(const QByteArray& line) {
     QString str = QString::fromUtf8(line).trimmed();
     QStringList values = str.split(',');
+
+    rawFile << str.toStdString() << "\n";
 
     if (values.size() < 15) return;
 
@@ -36,18 +45,21 @@ void SensorManager::processRawData(const QByteArray& line) {
             sensor.hdop = d.hdop;
 
             // Sensores físicos
-            sensor.accX = values[8].toFloat();  // pitch
-            sensor.accY = values[7].toFloat();  // roll
-            sensor.accZ = 0;
+            sensor.accX = values[8].toFloat();  // Pitch
+            sensor.accY = values[7].toFloat();  // Roll
+            sensor.accZ = 0;                    // No definido
 
             sensor.gyroX = 0;
             sensor.gyroY = 0;
-            sensor.gyroZ = values[9].toFloat();  // yaw
+            sensor.gyroZ = values[9].toFloat(); // Yaw
 
             emit newSensorData(sensor);
         }
 
     } catch (...) {
-        // Manejo de errores silencioso
     }
+}
+
+SensorManager::~SensorManager() {
+    if (rawFile.is_open()) rawFile.close();
 }

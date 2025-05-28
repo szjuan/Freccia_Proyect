@@ -22,6 +22,7 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit
   C:/Qt/6.5.3/mingw_64/include/QtCharts/qxyseries.h \
   C:/Qt/6.5.3/mingw_64/include/QtCore/QAbstractItemModel \
   C:/Qt/6.5.3/mingw_64/include/QtCore/QCoreApplication \
+  C:/Qt/6.5.3/mingw_64/include/QtCore/QDateTime \
   C:/Qt/6.5.3/mingw_64/include/QtCore/QDeadlineTimer \
   C:/Qt/6.5.3/mingw_64/include/QtCore/QEvent \
   C:/Qt/6.5.3/mingw_64/include/QtCore/QHash \
@@ -41,6 +42,7 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit
   C:/Qt/6.5.3/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.5.3/mingw_64/include/QtCore/QString \
   C:/Qt/6.5.3/mingw_64/include/QtCore/QStringList \
+  C:/Qt/6.5.3/mingw_64/include/QtCore/QTimer \
   C:/Qt/6.5.3/mingw_64/include/QtCore/QVariant \
   C:/Qt/6.5.3/mingw_64/include/QtCore/QtCore \
   C:/Qt/6.5.3/mingw_64/include/QtCore/QtCoreDepends \
@@ -590,6 +592,7 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fs_fwd.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fs_ops.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fs_path.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/fstream.tcc \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/functexcept.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/functional_hash.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/hash_bytes.h \
@@ -689,6 +692,7 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/string_conversions.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/type_traits.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/filesystem \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/fstream \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/functional \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/future \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/initializer_list \
@@ -740,8 +744,10 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/variant \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/vector \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++allocator.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \

@@ -11,10 +11,11 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QTimer>
+#include <QDateTime>
 #include <QVector3D>
 #include <QtDataVisualization>
 
-// Qt Data Visualization (¡incluye directamente!)
 #include <QtDataVisualization/Q3DScatter>
 #include <QtDataVisualization/QScatter3DSeries>
 #include <QtDataVisualization/QScatterDataProxy>
@@ -47,6 +48,17 @@ private:
     QLineSeries *seriesLon = nullptr;
     QLineSeries *seriesSats = nullptr;
 
+    // Labels dinámicas
+    QLabel *labelAccX = nullptr;
+    QLabel *labelAccY = nullptr;
+    QLabel *labelAccZ = nullptr;
+    QLabel *labelGyroX = nullptr;
+    QLabel *labelGyroY = nullptr;
+    QLabel *labelGyroZ = nullptr;
+    QLabel *labelLat = nullptr;
+    QLabel *labelLon = nullptr;
+    QLabel *labelSats = nullptr;
+
     QLabel* labelFecha = nullptr;
     QLabel* labelHora = nullptr;
 
@@ -56,6 +68,17 @@ private:
     QWidget* container3D = nullptr;
     QScatter3DSeries* scatterSeries = nullptr;
     QScatterDataProxy* scatterProxy = nullptr;
+
+    // Ejes dinámicos para las gráficas
+    QValueAxis *axisX1 = nullptr;
+    QValueAxis *axisX2 = nullptr;
+    QValueAxis *axisX3 = nullptr;
+    QValueAxis *axisX4 = nullptr;
+
+    QValueAxis *axisY1 = nullptr;
+    QValueAxis *axisY2 = nullptr;
+    QValueAxis *axisY3 = nullptr;
+    QValueAxis *axisY4 = nullptr;
 };
 
 #endif
