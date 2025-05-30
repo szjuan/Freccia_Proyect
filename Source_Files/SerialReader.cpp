@@ -6,13 +6,9 @@ SerialReader::SerialReader(QObject* parent) : QObject(parent) {
     connect(m_serialPort, &QSerialPort::readyRead, this, &SerialReader::handleReadyRead);
 }
 
-void SerialReader::start(const QString& portName, int baudRate) {
-    if (m_serialPort->isOpen()) {
-        m_serialPort->close();
-    }
-
+void SerialReader::start(const QString& portName) {
     m_serialPort->setPortName(portName);
-    m_serialPort->setBaudRate(baudRate);
+    m_serialPort->setBaudRate(QSerialPort::Baud115200);  // ajusta si usas otra velocidad
     m_serialPort->setDataBits(QSerialPort::Data8);
     m_serialPort->setParity(QSerialPort::NoParity);
     m_serialPort->setStopBits(QSerialPort::OneStop);
@@ -26,10 +22,8 @@ void SerialReader::start(const QString& portName, int baudRate) {
 }
 
 void SerialReader::handleReadyRead() {
-    if (m_serialPort && m_serialPort->canReadLine()) {
-        const QByteArray data = m_serialPort->readLine();
-        if (!data.isEmpty()) {
-            emit dataReceived(data);
-        }
+    const QByteArray data = m_serialPort->readLine();
+    if (!data.isEmpty()) {
+        emit dataReceived(data);
     }
 }

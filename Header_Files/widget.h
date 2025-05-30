@@ -78,6 +78,7 @@ private:
     QLabel* labelBaud = nullptr;
     QLabel* labelRaw = nullptr;
 
+
 };
 
 #endif // WIDGET_H

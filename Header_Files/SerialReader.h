@@ -10,7 +10,7 @@ class SerialReader : public QObject {
 
 public:
     explicit SerialReader(QObject* parent = nullptr);
-   void start(const QString& portName, int baudRate);
+    void start(const QString& portName);
 
 signals:
     void dataReceived(const QByteArray& data);

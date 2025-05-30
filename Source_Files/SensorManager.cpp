@@ -1,14 +1,10 @@
 #include "SensorManager.h"
-#include "DataCleaner.h"
-
-#include <QSerialPortInfo>
 #include <QStringList>
-#include <QDebug>
 
 SensorManager::SensorManager(QObject* parent) : QObject(parent) {
     m_serialReader = new SerialReader(this);
     connect(m_serialReader, &SerialReader::dataReceived, this, &SensorManager::processRawData);
-    //m_serialReader->start("COM6");
+    m_serialReader->start("COM6");
 }
 
 void SensorManager::processRawData(const QByteArray& line) {
@@ -40,7 +36,7 @@ void SensorManager::processRawData(const QByteArray& line) {
         vectorData.push_back(sensor);
 
         // Limpieza y almacenamiento automático
-        //cleaner.clean(vectorData);
+        cleaner.clean(vectorData);
 
         emit newSensorData(sensor);
     } catch (...) {
@@ -49,22 +45,3 @@ void SensorManager::processRawData(const QByteArray& line) {
 }
 
 SensorManager::~SensorManager() {}
-
-QStringList SensorManager::listarPuertosDisponibles() {
-    QStringList puertos;
-    const auto puertosDisponibles = QSerialPortInfo::availablePorts();
-    for (const QSerialPortInfo& info : puertosDisponibles) {
-        puertos << info.portName();
-    }
-    return puertos;
-}
-
-void SensorManager::iniciarLectura(const QString& puerto, int baudRate) {
-    if (!m_serialReader) return;
-
-    if (!puerto.isEmpty() && baudRate > 0) {
-        m_serialReader->start(puerto, baudRate);
-    } else {
-        qWarning() << "Puerto o baudrate inválido";
-    }
-}

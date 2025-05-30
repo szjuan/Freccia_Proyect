@@ -11,8 +11,6 @@
 #include <QtCharts/QValueAxis>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QChart>
-#include <QComboBox>
-#include <QPushButton>
 
 Widget::Widget(SensorManager* manager, QWidget* parent)
     : QWidget(parent), m_sensorManager(manager) {
@@ -53,7 +51,7 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
         ejeX->setTitleBrush(QBrush(Qt::white));
         ejeY->setTitleBrush(QBrush(Qt::white));
         ejeX->setRange(0, 1);
-        ejeY->setRange(0, 1);
+        ejeY->setRange(0, 1); //No menor a 12
 
         chart->addAxis(ejeX, Qt::AlignBottom);
         chart->addAxis(ejeY, Qt::AlignLeft);
@@ -94,7 +92,7 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     QGridLayout* gridServos = new QGridLayout();
     gridServos->setSpacing(10);
 
-    QStringList unidadesServo = {"°", "°", "°", "°"}; // Ajusta según lo que representa cada servo
+    QStringList unidadesServo = {"°", "%", "°", "°"}; // Ajusta según lo que representa cada servo
 
     for (int i = 0; i < 4; ++i) {
         QFrame* card = new QFrame();
@@ -133,6 +131,7 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     servoWidget->setLayout(gridServos);
     layout->addWidget(servoWidget, 2, 2);
 
+
     // === ESTADO DEL SISTEMA (2,3) con distribución 3 filas x 2 columnas ===
     QGridLayout* gridEstado = new QGridLayout();
     gridEstado->setSpacing(8);
@@ -154,103 +153,31 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
         titulo->setAlignment(Qt::AlignCenter);
 
         labelStatus[i] = new QLabel("Esperando...");
-        labelStatus[i]->setStyleSheet("color: white; font-size: 12px;");
+        labelStatus[i]->setStyleSheet("color: white; font-weight: bold; font-size: 12px;");
         labelStatus[i]->setAlignment(Qt::AlignCenter);
 
         cardLayout->addWidget(titulo);
         cardLayout->addWidget(labelStatus[i]);
-
         gridEstado->addWidget(card, i / 2, i % 2); // Dos columnas por fila
     }
 
-    // Ahora creas esas etiquetas extra fuera del for:
-    labelRaw = new QLabel("Paquete: Esperando...");
-    labelRaw->setStyleSheet("color: white; font-size: 10px; background-color: #1e1e1e; padding: 6px;");
-    labelRaw->setWordWrap(true);
-    labelRaw->setAlignment(Qt::AlignLeft);
-    labelRaw->setMinimumHeight(30);
-
-    labelCom = new QLabel("COM: Esperando...");
-    labelCom->setStyleSheet("color: white; font-size: 11px;");
-    labelCom->setAlignment(Qt::AlignLeft);
-
-    labelBaud = new QLabel("Velocidad: Esperando...");
-    labelBaud->setStyleSheet("color: white; font-size: 11px;");
-    labelBaud->setAlignment(Qt::AlignLeft);
-
-    // Añádelo a un layout vertical (o horizontal) con gridEstado para mostrarlo en el widget
-    QVBoxLayout* estadoFinal = new QVBoxLayout();
-    estadoFinal->addLayout(gridEstado);
-    estadoFinal->addWidget(labelCom);
-    estadoFinal->addWidget(labelBaud);
-    estadoFinal->addWidget(labelRaw);
-
-    QWidget* estadoWidget = new QWidget();
-    estadoWidget->setLayout(estadoFinal);
-    layout->addWidget(estadoWidget, 2, 3);
- 
-    /*
-    // === Línea inferior con selección de COM y Velocidad ===
-    QComboBox* comboPuertos = new QComboBox();
-    comboPuertos->addItems(m_sensorManager->listarPuertosDisponibles());
-    comboPuertos->setStyleSheet("color: black; background-color: white;");
-
-    QComboBox* comboBaudRate = new QComboBox();
-    comboBaudRate->addItems({"9600", "38400", "57600", "115200"});
-    comboBaudRate->setCurrentText("115200");
-    comboBaudRate->setStyleSheet("color: black; background-color: white;");
-    QString puertoPorDefecto = "COM6";
-    int index = comboPuertos->findText(puertoPorDefecto);
-    if (index != -1) {
-        comboPuertos->setCurrentIndex(index);
-    } else if (comboPuertos->count() > 0) {
-        comboPuertos->setCurrentIndex(0);
-    }
-
-    // Iniciar lectura automáticamente con puerto y baudrate preseleccionados
-    QString puertoInicial = comboPuertos->currentText();
-    int baudInicial = comboBaudRate->currentText().toInt();
-    if (!puertoInicial.isEmpty()) {
-        m_sensorManager->iniciarLectura(puertoInicial, baudInicial);
-        labelCom->setText("COM: " + puertoInicial);
-        labelBaud->setText("Velocidad: " + QString::number(baudInicial) + " baudios");
-    }
-
-    QPushButton* btnIniciar = new QPushButton("Iniciar");
-    btnIniciar->setStyleSheet("color: white; background-color: #444; padding: 4px;");
-
-    labelCom = new QLabel("COM: Esperando...");
-    labelCom->setStyleSheet("color: white; font-size: 11px;");
-    labelCom->setAlignment(Qt::AlignLeft);
-
-    labelBaud = new QLabel("Velocidad: Esperando...");
-    labelBaud->setStyleSheet("color: white; font-size: 11px;");
-    labelBaud->setAlignment(Qt::AlignRight);
-
+    // === Línea inferior con COM y Velocidad ===
     QHBoxLayout* puertoLayout = new QHBoxLayout();
     puertoLayout->setSpacing(12);
     puertoLayout->setContentsMargins(0, 0, 0, 0);
 
-    puertoLayout->addWidget(new QLabel("Puerto:"));
-    puertoLayout->addWidget(comboPuertos);
-    puertoLayout->addWidget(new QLabel("Baudios:"));
-    puertoLayout->addWidget(comboBaudRate);
-    puertoLayout->addWidget(btnIniciar);
-    puertoLayout->addStretch();
+    labelCom = new QLabel("COM: Esperando...");
+    labelCom->setStyleSheet("color: white; font-size: 11px; font-weight: bold;");
+    labelCom->setAlignment(Qt::AlignLeft);
+
+    labelBaud = new QLabel("Velocidad: Esperando...");
+    labelBaud->setStyleSheet("color: white; font-size: 11px; font-weight: bold;");
+    labelBaud->setAlignment(Qt::AlignRight);
+
     puertoLayout->addWidget(labelCom);
+    puertoLayout->addStretch(); // Para que se separen bien
     puertoLayout->addWidget(labelBaud);
 
-    connect(btnIniciar, &QPushButton::clicked, this, [=]() {
-        QString puerto = comboPuertos->currentText();
-        int baud = comboBaudRate->currentText().toInt();
-
-        if (!puerto.isEmpty()) {
-            m_sensorManager->iniciarLectura(puerto, baud);
-            labelCom->setText("COM: " + puerto);
-            labelBaud->setText("Velocidad: " + QString::number(baud) + " baudios");
-        }
-    });
-    
     // === Línea final con paquete RAW ===
     labelRaw = new QLabel("Paquete: Esperando...");
     labelRaw->setStyleSheet("color: white; font-size: 10px; background-color: #1e1e1e; padding: 6px;");
@@ -267,9 +194,9 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     QWidget* estadoWidget = new QWidget();
     estadoWidget->setLayout(estadoFinal);
     layout->addWidget(estadoWidget, 2, 3);
-    */
 
-    // Datos en tiempo real
+
+        // Datos en tiempo real
     connect(m_sensorManager, &SensorManager::newSensorData, this, [&](const SensorData& d) {
         static int t = 0;
 
@@ -330,6 +257,25 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
         labelStatus[3]->setText("Fecha UTC: " + QString::fromStdString(d.date));
         labelStatus[4]->setText("Fecha PC: " + QDate::currentDate().toString("yyyy-MM-dd"));
         labelStatus[5]->setText("Hora: " + QTime::currentTime().toString("hh:mm:ss"));
+
+        labelRaw->setText(
+            "Paquete: " +
+            QString::number(d.latitude) + "," +
+            QString::number(d.longitude) + "," +
+            QString::fromStdString(d.date) + "," +
+            QString::fromStdString(d.utc_time) + "," +
+            QString::number(d.secs) + "," +
+            QString::number(d.satellites) + "," +
+            QString::number(d.hdop) + "," +
+            QString::number(d.Roll) + "," +
+            QString::number(d.Pitch) + "," +
+            QString::number(d.Yaw) + "," +
+            QString::number(d.Servo1) + "," +
+            QString::number(d.Servo2) + "," +
+            QString::number(d.Servo3) + "," +
+            QString::number(d.Servo4) + "," +
+            QString::number(d.AltDiff)
+        );
 
         ++t;
     });

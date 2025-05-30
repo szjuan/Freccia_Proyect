@@ -18,9 +18,6 @@ public:
     ~SensorManager();
 
     const std::vector<SensorData>& getVectorData() const { return vectorData; }
-    
-    void iniciarLectura(const QString& puerto, int baudRate);
-    QStringList listarPuertosDisponibles();
 
 signals:
     void newSensorData(const SensorData& data);
