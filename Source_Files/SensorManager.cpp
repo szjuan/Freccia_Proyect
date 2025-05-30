@@ -1,65 +1,70 @@
 #include "SensorManager.h"
+#include "DataCleaner.h"
+
+#include <QSerialPortInfo>
 #include <QStringList>
-#include <fstream>
-#include <filesystem>
+#include <QDebug>
 
 SensorManager::SensorManager(QObject* parent) : QObject(parent) {
     m_serialReader = new SerialReader(this);
     connect(m_serialReader, &SerialReader::dataReceived, this, &SensorManager::processRawData);
-    m_serialReader->start("COM6");
-
-    rawFile.open("..\data\datos_raw.csv", std::ios::app);
-    if (rawFile.tellp() == 0) {
-        rawFile << "Latitud,Longitud,Fecha,HoraUTC,Segundos,Satélites,HDOP,Roll,Pitch,Yaw,Servo1,Servo2,Servo3,Servo4,AltDiff\n";
-    }
+    //m_serialReader->start("COM6");
 }
 
 void SensorManager::processRawData(const QByteArray& line) {
     QString str = QString::fromUtf8(line).trimmed();
     QStringList values = str.split(',');
 
-    rawFile << str.toStdString() << "\n";
-
     if (values.size() < 15) return;
 
     try {
-        // GPSData intermedio para limpiar y validar
-        GPSData gps;
-        gps.latitude = values[0].toDouble();
-        gps.longitude = values[1].toDouble();
-        gps.date = values[2].toStdString();
-        gps.utc_time = values[3].toStdString();
-        gps.satellites = values[5].toInt();
-        gps.hdop = values[6].toFloat();
+        SensorData sensor;
+        sensor.latitude    = values[0].toDouble();
+        sensor.longitude   = values[1].toDouble();
+        sensor.date        = values[2].toStdString();
+        sensor.utc_time    = values[3].toStdString();
+        sensor.secs        = values[4].toFloat();
+        sensor.satellites  = values[5].toInt();
+        sensor.hdop        = values[6].toFloat();
+        sensor.Roll        = values[7].toFloat();
+        sensor.Pitch       = values[8].toFloat();
+        sensor.Yaw         = values[9].toFloat();
+        sensor.Servo1      = values[10].toFloat();
+        sensor.Servo2      = values[11].toFloat();
+        sensor.Servo3      = values[12].toFloat();
+        sensor.Servo4      = values[13].toFloat();
+        sensor.AltDiff     = values[14].toFloat();
+        sensor.pressure    = 0.0f;
+        sensor.temperature = 0.0f;
 
-        std::vector<GPSData> gpsVector = { gps };
-        m_cleaner.clean(gpsVector);
+        vectorData.push_back(sensor);
 
-        for (const auto& d : gpsVector) {
-            SensorData sensor;
-            sensor.latitude = d.latitude;
-            sensor.longitude = d.longitude;
-            sensor.date = d.date;
-            sensor.utcHour = QString::fromStdString(d.utc_time).toFloat();
-            sensor.satellites = d.satellites;
-            sensor.hdop = d.hdop;
+        // Limpieza y almacenamiento automático
+        //cleaner.clean(vectorData);
 
-            // Sensores físicos
-            sensor.accX = values[8].toFloat();  // Pitch
-            sensor.accY = values[7].toFloat();  // Roll
-            sensor.accZ = 0;                    // No definido
-
-            sensor.gyroX = 0;
-            sensor.gyroY = 0;
-            sensor.gyroZ = values[9].toFloat(); // Yaw
-
-            emit newSensorData(sensor);
-        }
-
+        emit newSensorData(sensor);
     } catch (...) {
+        // Ignorar errores de conversión
     }
 }
 
-SensorManager::~SensorManager() {
-    if (rawFile.is_open()) rawFile.close();
+SensorManager::~SensorManager() {}
+
+QStringList SensorManager::listarPuertosDisponibles() {
+    QStringList puertos;
+    const auto puertosDisponibles = QSerialPortInfo::availablePorts();
+    for (const QSerialPortInfo& info : puertosDisponibles) {
+        puertos << info.portName();
+    }
+    return puertos;
+}
+
+void SensorManager::iniciarLectura(const QString& puerto, int baudRate) {
+    if (!m_serialReader) return;
+
+    if (!puerto.isEmpty() && baudRate > 0) {
+        m_serialReader->start(puerto, baudRate);
+    } else {
+        qWarning() << "Puerto o baudrate inválido";
+    }
 }

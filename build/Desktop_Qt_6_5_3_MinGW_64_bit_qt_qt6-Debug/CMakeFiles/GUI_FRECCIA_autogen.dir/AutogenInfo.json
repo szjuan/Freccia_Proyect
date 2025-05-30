@@ -141,6 +141,11 @@
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QGifPluginTargets.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QGifPluginTargets-relwithdebinfo.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QGifPluginAdditionalTargetInfo.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QICNSPluginConfig.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QICNSPluginTargets.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QICNSPluginTargets-relwithdebinfo.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QICNSPluginAdditionalTargetInfo.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QICOPluginConfig.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QICOPluginTargets.cmake",
@@ -171,11 +176,31 @@
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QSvgPluginTargets.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QSvgPluginTargets-relwithdebinfo.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QSvgPluginAdditionalTargetInfo.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTgaPluginConfig.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTgaPluginTargets.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTgaPluginTargets-relwithdebinfo.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTgaPluginAdditionalTargetInfo.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTiffPluginConfig.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTiffPluginTargets.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTiffPluginTargets-relwithdebinfo.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTiffPluginAdditionalTargetInfo.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTuioTouchPluginConfig.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTuioTouchPluginTargets.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTuioTouchPluginTargets-relwithdebinfo.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QTuioTouchPluginAdditionalTargetInfo.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QWbmpPluginConfig.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QWbmpPluginTargets.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QWbmpPluginTargets-relwithdebinfo.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QWbmpPluginAdditionalTargetInfo.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QWebpPluginConfig.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QWebpPluginTargets.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QWebpPluginTargets-relwithdebinfo.cmake",
+		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QWebpPluginAdditionalTargetInfo.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QWindowsDirect2DIntegrationPluginConfig.cmake",
 		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
 		"C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6Gui/Qt6QWindowsDirect2DIntegrationPluginTargets.cmake",
@@ -267,6 +292,12 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/Graph3DWindow.h",
+			"MU",
+			"RBYB5VKSNZ/moc_Graph3DWindow.cpp",
+			null
+		],
+		[
 			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/SensorManager.h",
 			"MU",
 			"RBYB5VKSNZ/moc_SensorManager.cpp",
@@ -291,18 +322,6 @@
 			null
 		],
 		[
-			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/GPSCSVReader.h",
-			"MU",
-			"BDBYVKFZ5G/moc_GPSCSVReader.cpp",
-			null
-		],
-		[
-			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/GPSData.h",
-			"MU",
-			"BDBYVKFZ5G/moc_GPSData.cpp",
-			null
-		],
-		[
 			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/SensorData.h",
 			"MU",
 			"BDBYVKFZ5G/moc_SensorData.cpp",
@@ -312,12 +331,6 @@
 			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/widget.h",
 			"MU",
 			"RBYB5VKSNZ/moc_widget.cpp",
-			null
-		],
-		[
-			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/xyseriesiodevice.h",
-			"MU",
-			"RBYB5VKSNZ/moc_xyseriesiodevice.cpp",
 			null
 		]
 	],
@@ -406,6 +419,11 @@
 	"SOURCES" : 
 	[
 		[
+			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/Graph3DWindow.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/SensorManager.cpp",
 			"MU",
 			null
@@ -426,22 +444,12 @@
 			null
 		],
 		[
-			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/data/GPSCSVReader.cpp",
-			"MU",
-			null
-		],
-		[
 			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/main.cpp",
 			"MU",
 			null
 		],
 		[
 			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/widget.cpp",
-			"MU",
-			null
-		],
-		[
-			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/xyseriesiodevice.cpp",
 			"MU",
 			null
 		]

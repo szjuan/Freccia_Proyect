@@ -1,19 +1,26 @@
 #ifndef SENSORDATA_H
 #define SENSORDATA_H
 
+#include <string>
+
 struct SensorData {
-    float accX;
-    float accY;
-    float accZ;
-    float gyroX;
-    float gyroY;
-    float gyroZ;
     double latitude;
     double longitude;
-    float utcHour;
+    std::string date;
+    std::string utc_time;
+    float secs;
     int satellites;
     float hdop;
-    std::string date;
+    float Roll;
+    float Pitch;
+    float Yaw;
+    float Servo1;
+    float Servo2;
+    float Servo3;
+    float Servo4;
+    float AltDiff;
+    float pressure;
+    float temperature;
 };
 
 #endif

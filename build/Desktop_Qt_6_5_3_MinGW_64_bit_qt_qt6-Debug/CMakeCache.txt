@@ -331,6 +331,9 @@ Qt6OpenGLWidgets_DIR:PATH=C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGLWidgets
 //The directory containing a CMake configuration file for Qt6OpenGL.
 Qt6OpenGL_DIR:PATH=C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6OpenGL
 
+//The directory containing a CMake configuration file for Qt6Qt53DCore.
+Qt6Qt53DCore_DIR:PATH=Qt6Qt53DCore_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Qt6SerialPort.
 Qt6SerialPort_DIR:PATH=C:/Qt/6.5.3/mingw_64/lib/cmake/Qt6SerialPort
 

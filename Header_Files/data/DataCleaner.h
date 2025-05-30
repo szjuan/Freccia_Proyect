@@ -1,13 +1,17 @@
 #ifndef DATACLEANER_H
 #define DATACLEANER_H
 
-#include "GPSData.h"
+#include "SensorData.h"
 #include <vector>
+#include <string>
 
 class DataCleaner {
 public:
-    void clean(std::vector<GPSData>& data);
-    void applyMovingAverage(std::vector<GPSData>& data, int windowSize); // No aplica, pero mantenido por estructura
+    void clean(std::vector<SensorData>& data);
+private:
+    bool isValid(const SensorData& d, std::string& errorDetail);
+    void correctIfNeeded(SensorData& d);
+    void approximateZeroOrInvalids(SensorData& d);
 };
 
 #endif

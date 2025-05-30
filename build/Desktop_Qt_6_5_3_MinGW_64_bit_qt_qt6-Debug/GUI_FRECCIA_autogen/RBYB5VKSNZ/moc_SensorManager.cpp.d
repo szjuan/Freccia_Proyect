@@ -315,5 +315,4 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_5_3_MinGW_64_bit
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h \
   C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/SerialReader.h \
   C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/DataCleaner.h \
-  C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/GPSData.h \
   C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/SensorData.h

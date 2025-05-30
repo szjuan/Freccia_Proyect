@@ -8,11 +8,8 @@
 
 #include "../../../../Header_Files/widget.h"
 #include <QtGui/qtextcursor.h>
-#include <QtGui/qscreen.h>
 #include <QtDataVisualization/q3dscene.h>
-#include <QtDataVisualization/qbar3dseries.h>
 #include <QtDataVisualization/qscatter3dseries.h>
-#include <QtDataVisualization/qsurface3dseries.h>
 #include <QtCore/qmetatype.h>
 
 #if __has_include(<QtCore/qtmochelpers.h>)

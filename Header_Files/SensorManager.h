@@ -1,11 +1,13 @@
 #ifndef SENSORMANAGER_H
 #define SENSORMANAGER_H
 
-#include <QObject>
 #include "SensorData.h"
 #include "SerialReader.h"
 #include "DataCleaner.h"
+
+#include <vector>
 #include <fstream>
+#include <QObject>
 
 class SensorManager : public QObject {
     Q_OBJECT
@@ -15,13 +17,18 @@ public:
     void processRawData(const QByteArray& line);
     ~SensorManager();
 
+    const std::vector<SensorData>& getVectorData() const { return vectorData; }
+    
+    void iniciarLectura(const QString& puerto, int baudRate);
+    QStringList listarPuertosDisponibles();
+
 signals:
     void newSensorData(const SensorData& data);
 
 private:
     SerialReader* m_serialReader = nullptr;
-    DataCleaner m_cleaner;
-    std::ofstream rawFile;
+    std::vector<SensorData> vectorData;
+    DataCleaner cleaner;
 };
 
 #endif
