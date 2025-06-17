@@ -1,4 +1,3 @@
-// Widget.cpp actualizado con cada gráfica individual y ordenadas en layout 3x4
 #include "widget.h"
 #include "Graph3DWindow.h"
 #include <QGridLayout>
@@ -14,6 +13,10 @@
 
 Widget::Widget(SensorManager* manager, QWidget* parent)
     : QWidget(parent), m_sensorManager(manager) {
+    
+    for (int i = 0; i < 6; ++i) labelStatus[i] = nullptr;
+    for (int i = 0; i < 4; ++i) labelServos[i] = nullptr;
+
 
     setWindowTitle("GUI_FRECCIA_Dashboard");
     setStyleSheet("background-color: black;");
@@ -92,7 +95,7 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     QGridLayout* gridServos = new QGridLayout();
     gridServos->setSpacing(10);
 
-    QStringList unidadesServo = {"°", "%", "°", "°"}; // Ajusta según lo que representa cada servo
+    QStringList unidadesServo = {"°", "°", "°", "°"};
 
     for (int i = 0; i < 4; ++i) {
         QFrame* card = new QFrame();
@@ -140,25 +143,36 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     QStringList campos = {"Conexión", "Inicio", "Paracaídas", "Fecha UTC", "Fecha PC", "Hora"};
 
     for (int i = 0; i < campos.size(); ++i) {
-        QFrame* card = new QFrame();
-        card->setStyleSheet("background-color: #2c2c2c; border-radius: 10px;");
-        card->setFixedSize(150, 50);
+    QFrame* card = new QFrame();
+    if (!card) {
+        qDebug() << "Error: card es nullptr en índice" << i;
+        continue;
+    }
 
-        QVBoxLayout* cardLayout = new QVBoxLayout(card);
-        cardLayout->setAlignment(Qt::AlignCenter);
-        cardLayout->setContentsMargins(4, 2, 4, 2);
+    card->setStyleSheet("background-color: #2c2c2c; border-radius: 10px;");
+    card->setFixedSize(150, 50);
 
-        QLabel* titulo = new QLabel(campos[i]);
-        titulo->setStyleSheet("color: white; font-size: 10px;");
-        titulo->setAlignment(Qt::AlignCenter);
+    QVBoxLayout* cardLayout = new QVBoxLayout(card);
+    cardLayout->setAlignment(Qt::AlignCenter);
+    cardLayout->setContentsMargins(4, 2, 4, 2);
 
-        labelStatus[i] = new QLabel("Esperando...");
-        labelStatus[i]->setStyleSheet("color: white; font-weight: bold; font-size: 12px;");
-        labelStatus[i]->setAlignment(Qt::AlignCenter);
+    QLabel* titulo = new QLabel(campos[i]);
+    titulo->setStyleSheet("color: white; font-size: 10px;");
+    titulo->setAlignment(Qt::AlignCenter);
 
-        cardLayout->addWidget(titulo);
-        cardLayout->addWidget(labelStatus[i]);
-        gridEstado->addWidget(card, i / 2, i % 2); // Dos columnas por fila
+    labelStatus[i] = new QLabel("Esperando...");
+    labelStatus[i]->setStyleSheet("color: white; font-weight: bold; font-size: 12px;");
+    labelStatus[i]->setAlignment(Qt::AlignCenter);
+
+    cardLayout->addWidget(titulo);
+    cardLayout->addWidget(labelStatus[i]);
+
+    if (labelStatus[i] == nullptr || titulo == nullptr || cardLayout == nullptr) {
+        qDebug() << "Fallo en creación de widgets para campo" << campos[i];
+        continue;
+    }
+
+    gridEstado->addWidget(card, i / 2, i % 2); // <--- aquí crashea si card == nullptr
     }
 
     // === Línea inferior con COM y Velocidad ===
@@ -185,54 +199,46 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     labelRaw->setAlignment(Qt::AlignLeft);
     labelRaw->setMinimumHeight(30);
 
-    // Combinar todo
     QVBoxLayout* estadoFinal = new QVBoxLayout();
     estadoFinal->addLayout(gridEstado);
-    estadoFinal->addLayout(puertoLayout);
-    estadoFinal->addWidget(labelRaw);
+
+    qDebug() << "Estado de labelRaw:" << (labelRaw ? "OK" : "nullptr");
+
+    if (labelRaw) {
+        estadoFinal->addWidget(labelRaw);
+    } else {
+        QLabel* fallbackRaw = new QLabel("Error: RAW no inicializado");
+        fallbackRaw->setStyleSheet("color: red;");
+        estadoFinal->addWidget(fallbackRaw);
+    }
 
     QWidget* estadoWidget = new QWidget();
     estadoWidget->setLayout(estadoFinal);
     layout->addWidget(estadoWidget, 2, 3);
+    qDebug() << "estadoWidget agregado al layout";
 
-
-        // Datos en tiempo real
+    // === Datos en tiempo real ===
     connect(m_sensorManager, &SensorManager::newSensorData, this, [&](const SensorData& d) {
         static int t = 0;
 
+        qDebug() << "Recibiendo datos del sensor...";
+        if (!labelRaw) qWarning() << "labelRaw es nullptr";
+        for (int i = 0; i < 4; ++i)
+            if (!labelServos[i]) qWarning() << "labelServos[" << i << "] es nullptr";
+        for (int i = 0; i < 6; ++i)
+            if (!labelStatus[i]) qWarning() << "labelStatus[" << i << "] es nullptr";
+        if (!seriesRoll || !labelRoll || !axisX_Roll || !axisY_Roll) qWarning() << "Falta algo en Roll";
+
         auto actualizarGrafica = [&](QLineSeries* series, double valor, QLabel* label, QValueAxis* axisX, QValueAxis* axisY) {
-            if (!series || !label || !axisX || !axisY) {
-            qWarning() << "Puntero nulo detectado en actualizarGrafica.";
-            return;
-        }
-
-        if (std::isnan(valor) || std::isinf(valor)) {
-            qWarning() << "Valor inválido para gráfica:" << valor;
-            return;
-        }
-
-        series->append(t, valor);
-        label->setText(QString("%1: %2").arg(series->name()).arg(valor));
-
-
-            if (axisX->min() == axisX->max()) {
-                axisX->setRange(t, t + 1);
-            } else {
-                if (t > axisX->max()) axisX->setMax(t);
-                if (t < axisX->min()) axisX->setMin(t);
-            }
-            if (axisY->min() == axisY->max()) {
-                axisY->setRange(valor, valor + 1);
-            } else {
-                if (valor > axisY->max()) axisY->setMax(valor);
-                if (valor < axisY->min()) axisY->setMin(valor);
-            }
-
-            if (valor > axisY->max()) axisY->setMax(valor);
-            if (valor < axisY->min()) axisY->setMin(valor);
+            if (!series || !label || !axisX || !axisY || std::isnan(valor) || std::isinf(valor)) return;
+            series->append(t, valor);
+            label->setText(QString("%1: %2").arg(series->name()).arg(valor));
+            if (axisX->min() == axisX->max()) axisX->setRange(t, t + 1);
+            else { if (t > axisX->max()) axisX->setMax(t); if (t < axisX->min()) axisX->setMin(t); }
+            if (axisY->min() == axisY->max()) axisY->setRange(valor, valor + 1);
+            else { if (valor > axisY->max()) axisY->setMax(valor); if (valor < axisY->min()) axisY->setMin(valor); }
         };
 
-        // === Actualización de gráficas con escalado dinámico ===
         actualizarGrafica(seriesRoll, d.Roll, labelRoll, axisX_Roll, axisY_Roll);
         actualizarGrafica(seriesPitch, d.Pitch, labelPitch, axisX_Pitch, axisY_Pitch);
         actualizarGrafica(seriesYaw, d.Yaw, labelYaw, axisX_Yaw, axisY_Yaw);
@@ -244,13 +250,11 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
         actualizarGrafica(seriesPressure, d.pressure, labelPressure, axisX_Pressure, axisY_Pressure);
         actualizarGrafica(seriesTemp, d.temperature, labelTemp, axisX_Temp, axisY_Temp);
 
-        // === Actualización de labels de servos ===
         labelServos[0]->setText(QString::number(d.Servo1) + "°");
         labelServos[1]->setText(QString::number(d.Servo2) + "°");
         labelServos[2]->setText(QString::number(d.Servo3) + "°");
         labelServos[3]->setText(QString::number(d.Servo4) + "°");
 
-        // === Actualización de estado del sistema ===
         labelStatus[0]->setText("Conexión: OK");
         labelStatus[1]->setText("Inicio: Recibido");
         labelStatus[2]->setText("Paracaídas: N/A");
@@ -258,8 +262,7 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
         labelStatus[4]->setText("Fecha PC: " + QDate::currentDate().toString("yyyy-MM-dd"));
         labelStatus[5]->setText("Hora: " + QTime::currentTime().toString("hh:mm:ss"));
 
-        labelRaw->setText(
-            "Paquete: " +
+        labelRaw->setText("Paquete: " +
             QString::number(d.latitude) + "," +
             QString::number(d.longitude) + "," +
             QString::fromStdString(d.date) + "," +

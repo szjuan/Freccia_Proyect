@@ -42,7 +42,6 @@ private:
     // === Contenedores de visualización ===
     QWidget* containerGeneral2D;
     QWidget* container3D;
-    QLabel* chartPlaceholder1;
     QLabel* chartPlaceholder2;
 
     // === Series para gráfica 2D (nuevas variables) ===
@@ -67,6 +66,15 @@ private:
     QScatter3DSeries* trailSeries;
     QVector<QVector3D> pointHistory;
     int xIndex3D = 0;
+
+    // === LLMAP ===
+
+    QGraphicsView* llmap;
+    QGraphicsScene* llmapScene;
+    QGraphicsEllipseItem* mapDot = nullptr;
+    QPainterPath trayecto;
+    QGraphicsPathItem* pathItem = nullptr;
+
 
     // === Métodos ===
     void setupGeneral2DChart();

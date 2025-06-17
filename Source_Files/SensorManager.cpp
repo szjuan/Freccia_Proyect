@@ -1,10 +1,15 @@
 #include "SensorManager.h"
 #include <QStringList>
+#include <QTimer>
 
 SensorManager::SensorManager(QObject* parent) : QObject(parent) {
     m_serialReader = new SerialReader(this);
     connect(m_serialReader, &SerialReader::dataReceived, this, &SensorManager::processRawData);
-    m_serialReader->start("COM6");
+
+    // Iniciar lectura ligeramente después para evitar problemas de sincronización
+    QTimer::singleShot(200, this, [this]() {
+        m_serialReader->start("COM6");
+    });
 }
 
 void SensorManager::processRawData(const QByteArray& line) {

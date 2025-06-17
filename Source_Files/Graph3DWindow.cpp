@@ -28,68 +28,53 @@ void Graph3DWindow::aplicarEstiloGrafico(QChart* chart, QValueAxis* axisX, QValu
 Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
     : QWidget(parent), m_sensorManager(manager) {
 
-    chartPlaceholder1 = new QLabel("Gráfica adicional 1");
     chartPlaceholder2 = new QLabel("Gráfica adicional 2");
-    chartPlaceholder1->setStyleSheet("background-color: #222; color: white;");
     chartPlaceholder2->setStyleSheet("background-color: #222; color: white;");
-    chartPlaceholder1->setAlignment(Qt::AlignCenter);
     chartPlaceholder2->setAlignment(Qt::AlignCenter);
 
     mainLayout = new QGridLayout(this);
     mainLayout->setSpacing(4);
     mainLayout->setContentsMargins(4, 4, 4, 4);
-    // Layout vertical para el gráfico y los valores superiores
-    auto* layout2DConValores = new QVBoxLayout();
-    contenedorValoresArriba = new QGridLayout();  // ← lo usaremos para poner los QLabel
-    layout2DConValores->addLayout(contenedorValoresArriba);
-    layout2DConValores->addWidget(chartAllView);
-
-    auto* widget2D = new QWidget();
-    widget2D->setLayout(layout2DConValores);
-    containerGeneral2D = widget2D;
 
     // === Gráfica 2D con nuevas variables ===
     QChart *chartAll = new QChart();
     chartAll->setMargins(QMargins(0, 0, 60, 0));
     chartAll->setTitle("Datos Generales");
 
-    seriesLat = new QLineSeries(); seriesLat->setName("Latitud");
-    seriesLon = new QLineSeries(); seriesLon->setName("Longitud");
-    seriesRoll   = new QLineSeries(); seriesRoll->setName("Roll");
-    seriesPitch  = new QLineSeries(); seriesPitch->setName("Pitch");
-    seriesYaw    = new QLineSeries(); seriesYaw->setName("Yaw");
-    seriesAlt    = new QLineSeries(); seriesAlt->setName("AltDiff");
-    seriesSats   = new QLineSeries(); seriesSats->setName("Satélites");
-    seriesHDOP   = new QLineSeries(); seriesHDOP->setName("HDOP");
+    // Crear series
+    seriesLat   = new QLineSeries(); seriesLat->setName("Latitud");
+    seriesLon   = new QLineSeries(); seriesLon->setName("Longitud");
+    seriesRoll  = new QLineSeries(); seriesRoll->setName("Roll");
+    seriesPitch = new QLineSeries(); seriesPitch->setName("Pitch");
+    seriesYaw   = new QLineSeries(); seriesYaw->setName("Yaw");
+    seriesAlt   = new QLineSeries(); seriesAlt->setName("AltDiff");
+    seriesSats  = new QLineSeries(); seriesSats->setName("Satélites");
+    seriesHDOP  = new QLineSeries(); seriesHDOP->setName("HDOP");
 
+    // Colores personalizados
     seriesRoll->setColor(QColor("#1f77b4"));
     seriesPitch->setColor(QColor("#2ca02c"));
     seriesYaw->setColor(QColor("#ff7f0e"));
     seriesAlt->setColor(QColor("#9467bd"));
-    seriesSats->setColor(QColor("#8c564b"));    // marrón
+    seriesSats->setColor(QColor("#8c564b")); 
     seriesHDOP->setColor(QColor("#ff0080"));
     seriesLat->setColor(QColor("#bcbd22"));
     seriesLon->setColor(QColor("#d62728"));
 
-    seriesRoll->setPointsVisible(true);
-    seriesPitch->setPointsVisible(true);
-    seriesYaw->setPointsVisible(true);
-    seriesAlt->setPointsVisible(true);
-    seriesSats->setPointsVisible(true);
-    seriesHDOP->setPointsVisible(true);
-    seriesLat->setPointsVisible(true);
-    seriesLon->setPointsVisible(true);
-
-    for (auto s : {seriesRoll, seriesPitch, seriesYaw, seriesAlt, seriesSats, seriesHDOP, seriesLat, seriesLon})
+    // Puntos visibles
+    for (auto s : {seriesRoll, seriesPitch, seriesYaw, seriesAlt, seriesSats, seriesHDOP, seriesLat, seriesLon}) {
+        s->setPointsVisible(true);
         chartAll->addSeries(s);
+    }
 
-    axisX1 = new QValueAxis(); 
+    // Ejes
+    axisX1 = new QValueAxis();
     axisX1->setTitleText("Tiempo");
-    axisX1->setRange(0, 1);  // ⬅️ Eje X inicia en rango mínimo
+    axisX1->setRange(0, 1);
 
-    axisY1 = new QValueAxis(); 
+    axisY1 = new QValueAxis();
     axisY1->setTitleText("Valor");
-    axisY1->setRange(0, 1);  // ⬅️ Eje Y inicia en rango mínimo
+    axisY1->setRange(0, 1);
 
     chartAll->addAxis(axisX1, Qt::AlignBottom);
     chartAll->addAxis(axisY1, Qt::AlignLeft);
@@ -97,14 +82,24 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
     for (auto s : {seriesRoll, seriesPitch, seriesYaw, seriesAlt, seriesSats, seriesHDOP, seriesLat, seriesLon})
         s->attachAxis(axisX1), s->attachAxis(axisY1);
 
+    // Aplicar estilo
     aplicarEstiloGrafico(chartAll, axisX1, axisY1);
 
+    // Vista
     chartAllView = new QChartView(chartAll);
     chartAllView->setMinimumSize(1000, 600);
-    containerGeneral2D = chartAllView;
-
     chartAllView->setContentsMargins(0, 0, 40, 0);
 
+    // Layout contenedor
+    auto* layout2DConValores = new QVBoxLayout();
+    contenedorValoresArriba = new QGridLayout();
+    layout2DConValores->addLayout(contenedorValoresArriba);
+    layout2DConValores->addWidget(chartAllView);
+
+    // Contenedor general 2D
+    auto* widget2D = new QWidget();
+    widget2D->setLayout(layout2DConValores);
+    containerGeneral2D = widget2D;
 
     // === Gráfico 3D ===
     scatterGraph = new Q3DScatter();
@@ -139,10 +134,21 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
     pal.setColor(QPalette::Window, Qt::white);
     container3D->setPalette(pal);
 
+    // === LLMAP ===
+    llmapScene = new QGraphicsScene();
+    llmapScene->setSceneRect(-200000, -200000, 400000, 400000);  // escala lógica inicial
+
+    llmap = new QGraphicsView(llmapScene);
+    llmap->setMinimumSize(500, 300);
+    llmap->setStyleSheet("background-color: black;");
+    trayecto = QPainterPath();  // solo inicializa vacío
+    pathItem = llmapScene->addPath(trayecto, QPen(Qt::green, 2));
+    pathItem->setZValue(-1);  // detrás del punto rojo
+
     // === Layout general ===
     mainLayout->addWidget(containerGeneral2D, 0, 0);
     mainLayout->addWidget(container3D,         0, 1);
-    mainLayout->addWidget(chartPlaceholder1,   1, 0);
+    mainLayout->addWidget(llmap,   1, 0);
     mainLayout->addWidget(chartPlaceholder2,   1, 1);
     setLayout(mainLayout);
 
@@ -170,7 +176,7 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
         double nuevoMinY = std::numeric_limits<double>::max();
 
         for (const auto& serie : {seriesRoll, seriesPitch, seriesYaw, seriesAlt, seriesSats, seriesHDOP, seriesLat, seriesLon}) {
-            for (const QPointF& punto : serie->pointsVector()) {
+            for (const QPointF& punto : serie->points()) {
                 if (punto.y() > nuevoMaxY) nuevoMaxY = punto.y();
                 if (punto.y() < nuevoMinY) nuevoMinY = punto.y();
             }
@@ -283,5 +289,18 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
         trailSeries->dataProxy()->resetArray(trailArray);
 
         xIndex3D++;
+
+        // === LLMAP ===
+
+        double x = d.longitude * 10000;
+        double y = -d.latitude * 10000;
+
+        if (mapDot) llmapScene->removeItem(mapDot);
+        mapDot = llmapScene->addEllipse(x - 5, y - 5, 10, 10, QPen(Qt::red), QBrush(Qt::red));
+        llmap->centerOn(mapDot);
+
+        trayecto.lineTo(x, y);
+        pathItem->setPath(trayecto);
+
     });
 }
