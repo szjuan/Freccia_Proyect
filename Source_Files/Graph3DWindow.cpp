@@ -1,15 +1,12 @@
 #include "Graph3DWindow.h"
 #include "SensorData.h"
 
-#include <QVBoxLayout>
-#include <QGridLayout>
-#include <QChartView>
-#include <QtCharts/QLineSeries>
-#include <QtCharts/QValueAxis>
 #include <QtCharts/QChart>
 #include <QtCharts/QChartView>
-#include <QtDataVisualization/Q3DTheme>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QValueAxis>
 #include <QtDataVisualization/Q3DScatter>
+#include <QtDataVisualization/Q3DTheme>
 #include <QtDataVisualization/QScatter3DSeries>
 #include <QtDataVisualization/QScatterDataProxy>
 #include <QtDataVisualization/QScatterDataItem>
@@ -135,20 +132,12 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
     container3D->setPalette(pal);
 
     // === LLMAP ===
-    llmapScene = new QGraphicsScene();
-    llmapScene->setSceneRect(-200000, -200000, 400000, 400000);  // escala lógica inicial
-
-    llmap = new QGraphicsView(llmapScene);
-    llmap->setMinimumSize(500, 300);
-    llmap->setStyleSheet("background-color: black;");
-    trayecto = QPainterPath();  // solo inicializa vacío
-    pathItem = llmapScene->addPath(trayecto, QPen(Qt::green, 2));
-    pathItem->setZValue(-1);  // detrás del punto rojo
+    mapWidget = new MapWidget();
 
     // === Layout general ===
     mainLayout->addWidget(containerGeneral2D, 0, 0);
     mainLayout->addWidget(container3D,         0, 1);
-    mainLayout->addWidget(llmap,   1, 0);
+    mainLayout->addWidget(mapWidget, 1, 0);
     mainLayout->addWidget(chartPlaceholder2,   1, 1);
     setLayout(mainLayout);
 
@@ -292,15 +281,8 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
 
         // === LLMAP ===
 
-        double x = d.longitude * 10000;
-        double y = -d.latitude * 10000;
-
-        if (mapDot) llmapScene->removeItem(mapDot);
-        mapDot = llmapScene->addEllipse(x - 5, y - 5, 10, 10, QPen(Qt::red), QBrush(Qt::red));
-        llmap->centerOn(mapDot);
-
-        trayecto.lineTo(x, y);
-        pathItem->setPath(trayecto);
+        if (mapWidget)
+        mapWidget->updateMap(d.latitude, d.longitude);
 
     });
 }

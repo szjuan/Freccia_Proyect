@@ -14,6 +14,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     SerialPort
     DataVisualization
+    WebEngineWidgets
 )
 
 qt_standard_project_setup()
@@ -24,6 +25,7 @@ qt_add_executable(GUI_FRECCIA
   Source_Files/SensorManager.cpp
   Source_Files/SerialReader.cpp
   Source_Files/Graph3DWindow.cpp
+  Source_Files/MapWidget.cpp
 
   Source_Files/data/DataCleaner.cpp
   Source_Files/data/FileHelper.cpp
@@ -32,6 +34,7 @@ qt_add_executable(GUI_FRECCIA
   Header_Files/SensorManager.h
   Header_Files/SerialReader.h
   Header_Files/Graph3DWindow.h
+  Header_Files/MapWidget.h
 
   Header_Files/data/DataCleaner.h
   Header_Files/data/FileHelper.h
@@ -44,11 +47,10 @@ qt_add_resources(GUI_FRECCIA "resources"
         assets/logo_xae.png
 )
 
-include_directories(
+target_include_directories(GUI_FRECCIA PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/Header_Files
     ${CMAKE_CURRENT_SOURCE_DIR}/Header_Files/data
 )
-
 
 set_target_properties(GUI_FRECCIA PROPERTIES
     WIN32_EXECUTABLE TRUE
@@ -63,7 +65,10 @@ target_link_libraries(GUI_FRECCIA PUBLIC
     Qt::Widgets
     Qt::SerialPort
     Qt::DataVisualization
+    Qt::WebEngineWidgets
 )
+
+file(COPY ${CMAKE_SOURCE_DIR}/assets/map.html DESTINATION ${CMAKE_BINARY_DIR}/assets)
 
 install(TARGETS GUI_FRECCIA
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"

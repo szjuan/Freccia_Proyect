@@ -2,6 +2,7 @@
 #define GRAPH3DWINDOW_H
 
 #include "SensorManager.h"
+#include "MapWidget.h"
 
 // Qt Widgets y Layouts
 #include <QWidget>
@@ -69,12 +70,7 @@ private:
 
     // === LLMAP ===
 
-    QGraphicsView* llmap;
-    QGraphicsScene* llmapScene;
-    QGraphicsEllipseItem* mapDot = nullptr;
-    QPainterPath trayecto;
-    QGraphicsPathItem* pathItem = nullptr;
-
+    MapWidget* mapWidget = nullptr;
 
     // === Métodos ===
     void setupGeneral2DChart();
