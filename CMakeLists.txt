@@ -14,6 +14,12 @@ find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     SerialPort
     DataVisualization
+    3DCore
+    3DExtras
+    3DRender
+    3DInput
+    3DLogic
+    3DAnimation
 )
 
 qt_standard_project_setup()
@@ -44,6 +50,14 @@ qt_add_resources(GUI_FRECCIA "resources"
         assets/logo_xae.png
 )
 
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/assets/model)
+
+configure_file(
+    ${CMAKE_SOURCE_DIR}/assets/model/CoheteGUI.stl
+    ${CMAKE_BINARY_DIR}/assets/model/CoheteGUI.stl
+    COPYONLY
+)
+
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/Header_Files
     ${CMAKE_CURRENT_SOURCE_DIR}/Header_Files/data
@@ -63,6 +77,12 @@ target_link_libraries(GUI_FRECCIA PUBLIC
     Qt::Widgets
     Qt::SerialPort
     Qt::DataVisualization
+    Qt::3DCore
+    Qt::3DExtras
+    Qt::3DRender
+    Qt::3DInput
+    Qt::3DLogic
+    Qt::3DAnimation
 )
 
 install(TARGETS GUI_FRECCIA

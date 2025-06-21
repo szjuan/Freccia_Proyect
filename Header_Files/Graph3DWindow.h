@@ -25,6 +25,15 @@
 #include <QtDataVisualization/QScatter3DSeries>
 #include <QtDataVisualization/QScatterDataProxy>
 #include <QtDataVisualization/QScatterDataItem>
+#include <QGridLayout>
+
+// Qt 3D
+#include <Qt3DCore/QEntity>
+#include <Qt3DCore/QTransform>
+#include <Qt3DExtras/Qt3DWindow>
+#include <QCoreApplication>
+#include <Qt3DExtras/QOrbitCameraController>
+#include <Qt3DRender/QCamera>
 
 class Graph3DWindow : public QWidget {
     Q_OBJECT
@@ -42,7 +51,7 @@ private:
     // === Contenedores de visualización ===
     QWidget* containerGeneral2D;
     QWidget* container3D;
-    QLabel* chartPlaceholder2;
+    
 
     // === Series para gráfica 2D (nuevas variables) ===
     QChart* chartAll;
@@ -75,6 +84,11 @@ private:
     QPainterPath trayecto;
     QGraphicsPathItem* pathItem = nullptr;
 
+    // === Series y ejes para gráfica 3D ===
+    Qt3DCore::QEntity* rootEntity;
+    Qt3DCore::QTransform* rocketTransform;
+    Qt3DExtras::Qt3DWindow* view3D;
+    QWidget* container3DModel;
 
     // === Métodos ===
     void setupGeneral2DChart();
