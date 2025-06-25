@@ -1,21 +1,32 @@
 #include "widget.h"
 #include "Graph3DWindow.h"
+#include "InicioWindow.h"  // nueva pantalla
 
 #include <QApplication>
-#include <QMessageBox>
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
-    SensorManager* manager = new SensorManager();
+    InicioWindow inicio;
+    inicio.resize(300, 150);
+    inicio.show();
 
-    Widget w(manager);
-    w.resize(1280, 720);
-    w.show();
+    QObject::connect(&inicio, &InicioWindow::iniciar, [&](bool abrir2D, bool abrir3D) {
 
-    Graph3DWindow* ventanaGeneral = new Graph3DWindow(manager);
-    ventanaGeneral->resize(1000, 500);
-    ventanaGeneral->show();
+        SensorManager* manager = new SensorManager();
+        
+        if (abrir2D) {
+            Widget* w = new Widget(manager);
+            w->resize(1280, 720);
+            w->show();
+        }
+
+        if (abrir3D) {
+            Graph3DWindow* g3d = new Graph3DWindow(manager);
+            g3d->resize(1280, 720);
+            g3d->show();
+        }
+    });
 
     return a.exec();
 }

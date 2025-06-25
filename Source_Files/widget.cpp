@@ -18,11 +18,11 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     for (int i = 0; i < 4; ++i) labelServos[i] = nullptr;
 
 
-    setWindowTitle("GUI_FRECCIA_Dashboard");
+    setWindowTitle("FRECCIA_XAE - Gráficas 2D");
     setStyleSheet("background-color: black;");
     QGridLayout* layout = new QGridLayout(this);
     layout->setSpacing(2);
-    layout->setContentsMargins(0, 0, 0, 0);
+    setWindowIcon(QIcon("./assets/logo_xae.png"));
 
     auto crearGrafica = [&](QChart*& chart, QLineSeries*& series, QChartView*& view,
                         QLabel*& label, QValueAxis*& ejeX, QValueAxis*& ejeY,

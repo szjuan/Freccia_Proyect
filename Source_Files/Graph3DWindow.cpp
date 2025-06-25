@@ -39,10 +39,12 @@ void Graph3DWindow::aplicarEstiloGrafico(QChart* chart, QValueAxis* axisX, QValu
 
 Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
     : QWidget(parent), m_sensorManager(manager) {
-
+    setWindowIcon(QIcon("./assets/logo_xae.png"));
+    setWindowTitle("FRECCIA_XAE - Gráficas 3D y OSM");
     mainLayout = new QGridLayout(this);
     mainLayout->setSpacing(4);
     mainLayout->setContentsMargins(4, 4, 4, 4);
+    
 
     // === Gráfica 2D con nuevas variables ===
     QChart *chartAll = new QChart();
@@ -155,7 +157,7 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
 
    //// === Gyro3D ===
     view3D = new Qt3DExtras::Qt3DWindow();
-    view3D->defaultFrameGraph()->setClearColor(QColor("#e0e0e0"));
+    view3D->defaultFrameGraph()->setClearColor(QColor("#fffff"));
     container3DModel = QWidget::createWindowContainer(view3D);
     container3DModel->setMinimumSize(500, 300);
     container3DModel->setMaximumSize(500, 300);
@@ -199,7 +201,7 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
 
     // === Transformación y Material ===
     rocketTransform = new Qt3DCore::QTransform();
-    rocketTransform->setScale(500.0f);
+    rocketTransform->setScale(300.0f);
     rocketTransform->setTranslation(QVector3D(0.0f, -1.0f, 0.0f));
     rocketTransform->setRotation(QQuaternion::fromEulerAngles(90, 0, 0));
 

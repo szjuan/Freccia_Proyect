@@ -1,6 +1,7 @@
 GUI_FRECCIA_autogen/timestamp: \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/CMakeLists.txt \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/Graph3DWindow.h \
+	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/InicioWindow.h \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/SensorManager.h \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/SerialReader.h \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/DataCleaner.h \
@@ -8,12 +9,15 @@ GUI_FRECCIA_autogen/timestamp: \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/SensorData.h \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/widget.h \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/Graph3DWindow.cpp \
+	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/InicioWindow.cpp \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/SensorManager.cpp \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/SerialReader.cpp \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/data/DataCleaner.cpp \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/data/FileHelper.cpp \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/main.cpp \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/widget.cpp \
+	C:/Users/santi/OneDrive/Documentos/Atenea_UI/assets/Inicio.gif \
+	C:/Users/santi/OneDrive/Documentos/Atenea_UI/assets/logo_xae.png \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/assets/model/CoheteGUI.STL \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.qtc/package-manager/auto-setup.cmake \
 	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
@@ -302,6 +306,7 @@ GUI_FRECCIA_autogen/timestamp: \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtSerialPort/qserialportglobal.h \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtSerialPort/qserialportinfo.h \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtSerialPort/qtserialportexports.h \
+	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/QCheckBox \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/QGraphicsView \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/QGraphicsWidget \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/QGridLayout \
@@ -313,6 +318,7 @@ GUI_FRECCIA_autogen/timestamp: \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
+	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/qcheckbox.h \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/qframe.h \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/qgraphicsitem.h \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtWidgets/qgraphicslayoutitem.h \
@@ -456,7 +462,6 @@ GUI_FRECCIA_autogen/timestamp: \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfigVersion.cmake \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfigVersionImpl.cmake \
-	D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreMacros.cmake \
 	D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreTargets-relwithdebinfo.cmake \

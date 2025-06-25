@@ -30,6 +30,7 @@ qt_add_executable(GUI_FRECCIA
   Source_Files/SensorManager.cpp
   Source_Files/SerialReader.cpp
   Source_Files/Graph3DWindow.cpp
+  Source_Files/InicioWindow.cpp
 
   Source_Files/data/DataCleaner.cpp
   Source_Files/data/FileHelper.cpp
@@ -38,16 +39,23 @@ qt_add_executable(GUI_FRECCIA
   Header_Files/SensorManager.h
   Header_Files/SerialReader.h
   Header_Files/Graph3DWindow.h
+  Header_Files/InicioWindow.h
 
   Header_Files/data/DataCleaner.h
   Header_Files/data/FileHelper.h
   Header_Files/data/SensorData.h
 )
 
-qt_add_resources(GUI_FRECCIA "resources"
-    PREFIX "/assets"
-    FILES
-        assets/logo_xae.png
+configure_file(
+    ${CMAKE_SOURCE_DIR}/assets/logo_xae.png
+    ${CMAKE_BINARY_DIR}/assets/logo_xae.png
+    COPYONLY
+)
+
+configure_file(
+    ${CMAKE_SOURCE_DIR}/assets/Inicio.gif
+    ${CMAKE_BINARY_DIR}/assets/Inicio.gif
+    COPYONLY
 )
 
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/assets/model)

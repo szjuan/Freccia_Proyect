@@ -435,7 +435,8 @@
 		"D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt63DAnimation/Qt63DAnimationAdditionalTargetInfo.cmake",
 		"D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt63DAnimation/Qt63DAnimationVersionlessTargets.cmake",
 		"D:/ProgramFiles/Qt/Tools/CMake_64/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
-		"D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in",
+		"C:/Users/santi/OneDrive/Documentos/Atenea_UI/assets/logo_xae.png",
+		"C:/Users/santi/OneDrive/Documentos/Atenea_UI/assets/Inicio.gif",
 		"C:/Users/santi/OneDrive/Documentos/Atenea_UI/assets/model/CoheteGUI.STL"
 	],
 	"CMAKE_SOURCE_DIR" : "C:/Users/santi/OneDrive/Documentos/Atenea_UI",
@@ -448,6 +449,12 @@
 			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/Graph3DWindow.h",
 			"MU",
 			"RBYB5VKSNZ/moc_Graph3DWindow.cpp",
+			null
+		],
+		[
+			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/InicioWindow.h",
+			"MU",
+			"RBYB5VKSNZ/moc_InicioWindow.cpp",
 			null
 		],
 		[
@@ -573,10 +580,7 @@
 	],
 	"MOC_PREDEFS_FILE" : "C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/GUI_FRECCIA_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
-	"MOC_SKIP" : 
-	[
-		"C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/qrc_resources.cpp"
-	],
+	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 8,
 	"PARSE_CACHE_FILE" : "C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/GUI_FRECCIA_autogen.dir/ParseCache.txt",
@@ -589,6 +593,11 @@
 	[
 		[
 			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/Graph3DWindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/santi/OneDrive/Documentos/Atenea_UI/Source_Files/InicioWindow.cpp",
 			"MU",
 			null
 		],
@@ -625,10 +634,7 @@
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
-	"UIC_SKIP" : 
-	[
-		"C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.rcc/qrc_resources.cpp"
-	],
+	"UIC_SKIP" : [],
 	"UIC_UI_FILES" : [],
 	"USE_BETTER_GRAPH" : false,
 	"VERBOSITY" : 0

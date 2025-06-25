@@ -1812,8 +1812,10 @@
 			"path" : "D:/ProgramFiles/Qt/Tools/CMake_64/share/cmake-3.30/Modules/GNUInstallDirs.cmake"
 		},
 		{
-			"isExternal" : true,
-			"path" : "D:/ProgramFiles/Qt/6.6.3/mingw_64/lib/cmake/Qt6Core/Qt6CoreConfigureFileTemplate.in"
+			"path" : "assets/logo_xae.png"
+		},
+		{
+			"path" : "assets/Inicio.gif"
 		},
 		{
 			"path" : "assets/model/CoheteGUI.STL"
