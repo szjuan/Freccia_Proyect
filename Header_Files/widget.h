@@ -2,6 +2,8 @@
 #define WIDGET_H
 
 #include "SensorManager.h"
+#include "data/FileHelper.h"
+
 class Graph3DWindow;
 
 #include <QWidget>
@@ -20,6 +22,8 @@ class Graph3DWindow;
 #include <QtDataVisualization/QScatterDataProxy>
 #include <QtDataVisualization/QScatterDataItem>
 
+extern Graph3DWindow* ventanaGraph3D;
+
 class Widget : public QWidget {
     Q_OBJECT
 
@@ -27,12 +31,31 @@ public:
     explicit Widget(SensorManager* manager, QWidget* parent = nullptr);
     ~Widget();
 
+    void abrirVentana3DDesdeExterno();
+    void procesarDatos(const SensorData& data);
+
 private:
     int xIndex = 0;
 
     // Referencias a SensorManager y Graph3DWindow
     SensorManager* m_sensorManager = nullptr;
     Graph3DWindow* m_graph3DWindow = nullptr;
+
+    // === Menu ===
+    QLabel* labelTiempo;
+    QTimer* timer;
+    QTime tiempoInicio;
+    bool tiempoIniciado = false;
+    QTimer* timeoutTimer;
+    bool pantalla1Activa = true;
+    QAction* pantalla1 = nullptr;
+    QAction* pantalla2 = nullptr;
+    void actualizarEstilosMenu();
+    Widget* ventanaPantalla1 = nullptr;
+    Graph3DWindow* ventanaGraph3D = nullptr;
+    FileHelper* fileHelper = nullptr;
+    QTimer* timerGrabacion = nullptr;
+    QTime tiempoGrabacion;
 
     // === Gráficas individuales ===
     QChart *chartRoll, *chartPitch, *chartYaw;
