@@ -3,6 +3,9 @@
 #include <fstream>
 #include <filesystem>
 #include <QDateTime>
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
 
 bool FileHelper::exists(const std::string& path) {
     std::ifstream file(path);
@@ -60,9 +63,11 @@ void FileHelper::appendErrorData(const std::string& path, const SensorData& d, c
 }
 
 void FileHelper::iniciarGrabacion() {
+    tiempoGrabado = QTime(0, 0, 0);
     createDataDirectoryIfNeeded();
 
-    QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_HHmmss");
+    QString timestamp = "Date_" + QDateTime::currentDateTime().toString("dd_MMMM_yyyy") +
+                    "_Time_" + QDateTime::currentDateTime().toString("HH_mm_ss");
     rutaArchivoActual = "../data/rec_" + timestamp.toStdString() + ".csv";
 
     archivoGrabacion.open(rutaArchivoActual, std::ios::out);
@@ -82,4 +87,26 @@ void FileHelper::detenerGrabacion() {
     if (archivoGrabacion.is_open()) {
         archivoGrabacion.close();
     }
+
+    // Añadir la duración al principio del archivo
+    QString ruta = QString::fromStdString(rutaArchivoActual);
+    QFile file(ruta);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "No se pudo abrir el archivo para leer:" << ruta;
+        return;
+    }
+
+    QString contenido = QTextStream(&file).readAll();
+    file.close();
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
+        qWarning() << "No se pudo abrir el archivo para escribir:" << ruta;
+        return;
+    }
+
+    QTextStream out(&file);
+    out << "Tiempo de grabación: " << tiempoGrabado.toString("hh:mm:ss") << "\n";
+    out << contenido;
+    file.close();
 }

@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <QTime>
 
 class FileHelper {
 public:
@@ -20,10 +21,12 @@ public:
     void iniciarGrabacion();
     void escribirDuranteGrabacion(const SensorData& d);
     void detenerGrabacion();
+    QTime tiempoGrabado;
 
 private:
     std::ofstream archivoGrabacion;
     std::string rutaArchivoActual;
+    
 };
 
 #endif

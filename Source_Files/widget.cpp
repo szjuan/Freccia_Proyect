@@ -34,7 +34,6 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     for (int i = 0; i < 6; ++i) labelStatus[i] = nullptr;
     for (int i = 0; i < 4; ++i) labelServos[i] = nullptr;
 
-
     setWindowTitle("FRECCIA_XAE - Gráficas 2D");
     setStyleSheet("background-color: black;");
     QGridLayout* layout = new QGridLayout();
@@ -55,58 +54,138 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     // === Botones ===
     QPushButton* btnRecord = new QPushButton("● Grabar");
     btnRecord->setStyleSheet(
-        "QPushButton { color: white; background-color: transparent; border: none; }"
-        "QPushButton:hover { background-color: #444; }"
+        "QPushButton { "
+        "color: white; "
+        "background-color: red; "
+        "border: none; "
+        "padding: 6px 14px; "
+        "font-size: 15px; "
+        "border-radius: 8px; "
+        "}"
+        "QPushButton:hover { background-color: darkred; }"
     );
 
     QPushButton* btnStop = new QPushButton("■ Detener");
     btnStop->setStyleSheet(
-        "QPushButton { color: white; background-color: transparent; border: none; }"
+        "QPushButton { "
+        "color: white; "
+        "background-color: transparent; "
+        "border: none; "
+        "padding: 6px 14px; "
+        "font-size: 15px; "
+        "border-radius: 8px; "
+        "}"
         "QPushButton:hover { background-color: #444; }"
     );
 
     QPushButton* btnVerAntiguos = new QPushButton("Ver antiguos");
     btnVerAntiguos->setStyleSheet(
-        "QPushButton { color: white; background-color: transparent; border: none; }"
+        "QPushButton { "
+        "color: white; "
+        "background-color: transparent; "
+        "border: none; "
+        "padding: 6px 14px; "
+        "font-size: 15px; "
+        "border-radius: 8px; "
+        "}"
         "QPushButton:hover { background-color: #444; }"
     );
 
     // FileHelper inicializado
     fileHelper = new FileHelper();
 
+    // Inicialmente solo el botón Grabar está habilitado
+    btnRecord->setEnabled(true);
+    btnStop->setEnabled(false);
+
     // === Conexión botón GRABAR ===
-    connect(btnRecord, &QPushButton::clicked, this, [this, btnRecord]() {
+    connect(btnRecord, &QPushButton::clicked, this, [this, btnRecord, btnStop]() {
         fileHelper->iniciarGrabacion();
+
+        // Reiniciar tiempo y contador
+        tiempoGrabacion = QTime(0, 0, 0);
+
+        if (!timerGrabacion) {
+            timerGrabacion = new QTimer(this);
+            connect(timerGrabacion, &QTimer::timeout, this, [this, btnRecord]() {
+                QString tiempoTexto = tiempoGrabacion.toString("hh:mm:ss");
+                btnRecord->setText("● Grabando " + tiempoTexto);
+                tiempoGrabacion = tiempoGrabacion.addSecs(1);
+                fileHelper->tiempoGrabado = tiempoGrabacion;
+            });
+        }
+
+        timerGrabacion->start(1000);
+        btnRecord->setText("● Grabando 00:00:00");
+
+        // Cambiar estilo a activo
         btnRecord->setStyleSheet(
-            "QPushButton { color: red; background-color: transparent; border: none; }"
-            "QPushButton:hover { background-color: #444; }"
+            "QPushButton { "
+            "color: red; "
+            "background-color: black; "
+            "border: none; "
+            "padding: 6px 14px; "
+            "font-size: 15px; "
+            "border-radius: 8px; "
+            "} "
+            "QPushButton:hover { background-color: #222; }"
         );
+
+        btnRecord->setEnabled(false);
+        btnStop->setEnabled(true);
     });
 
     // === Conexión botón DETENER ===
     connect(btnStop, &QPushButton::clicked, this, [this, btnStop, btnRecord]() {
         fileHelper->detenerGrabacion();
 
-        // Cambia a rojo por 1.2 segundos
+        // Detener y ocultar contador
+        if (timerGrabacion) timerGrabacion->stop();
+        btnRecord->setText("● Grabar");
+
+        // Restaurar estilo original
+        btnRecord->setStyleSheet(
+            "QPushButton { "
+            "color: white; "
+            "background-color: red; "
+            "border: none; "
+            "padding: 6px 14px; "
+            "font-size: 15px; "
+            "border-radius: 8px; "
+            "} "
+            "QPushButton:hover { background-color: darkred; }"
+        );
+
+        // Estilo temporal rojo para detener
         btnStop->setStyleSheet(
-            "QPushButton { color: red; background-color: transparent; border: none; }"
+            "QPushButton { "
+            "color: red; "
+            "background-color: transparent; "
+            "border: none; "
+            "padding: 6px 14px; "
+            "font-size: 15px; "
+            "border-radius: 8px; "
+            "} "
             "QPushButton:hover { background-color: #444; }"
         );
 
         QTimer::singleShot(1200, this, [btnStop]() {
             btnStop->setStyleSheet(
-                "QPushButton { color: white; background-color: transparent; border: none; }"
+                "QPushButton { "
+                "color: white; "
+                "background-color: transparent; "
+                "border: none; "
+                "padding: 6px 14px; "
+                "font-size: 15px; "
+                "border-radius: 8px; "
+                "} "
                 "QPushButton:hover { background-color: #444; }"
             );
         });
 
-        // Restaurar estilo de btnRecord
-        btnRecord->setStyleSheet(
-            "QPushButton { color: white; background-color: transparent; border: none; }"
-            "QPushButton:hover { background-color: #444; }"
-        );
+        btnRecord->setEnabled(true);
+        btnStop->setEnabled(false);
     });
-
 
     QWidget* leftButtons = new QWidget();
     QHBoxLayout* leftLayout = new QHBoxLayout(leftButtons);
@@ -117,8 +196,12 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
 
     // === Tiempo ===
     labelTiempo = new QLabel("Tiempo: 00:00:00");
-    labelTiempo->setAlignment(Qt::AlignCenter);
-    labelTiempo->setStyleSheet("color: white; font-weight: bold;");
+    labelTiempo->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);  // centrado horizontal y vertical
+    labelTiempo->setStyleSheet(
+        "color: white;"
+        "font-weight: bold;"
+        "font-size: 18px;"     // tamaño más grande
+    );
 
     // Menú desplegable y acciones
    QPushButton* btnMenu = new QPushButton();
@@ -566,7 +649,6 @@ void Widget::abrirVentana3DDesdeExterno() {
 }
 
 void Widget::procesarDatos(const SensorData& data) {
-
     fileHelper->escribirDuranteGrabacion(data);
 }
 

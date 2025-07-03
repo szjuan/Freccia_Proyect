@@ -54,6 +54,8 @@ private:
     Widget* ventanaPantalla1 = nullptr;
     Graph3DWindow* ventanaGraph3D = nullptr;
     FileHelper* fileHelper = nullptr;
+    QTimer* timerGrabacion = nullptr;
+    QTime tiempoGrabacion;
 
     // === Gráficas individuales ===
     QChart *chartRoll, *chartPitch, *chartYaw;
