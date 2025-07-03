@@ -25,6 +25,7 @@
 #include <Qt3DCore/QTransform>
 #include <Qt3DRender/QPointLight>
 
+static Graph3DWindow* ventanaGraph3D = nullptr;
 
 void Graph3DWindow::aplicarEstiloGrafico(QChart* chart, QValueAxis* axisX, QValueAxis* axisY) {
     chart->setBackgroundBrush(QBrush(Qt::black));
@@ -44,7 +45,7 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
     mainLayout = new QGridLayout(this);
     mainLayout->setSpacing(4);
     mainLayout->setContentsMargins(4, 4, 4, 4);
-    
+    this->setAttribute(Qt::WA_DeleteOnClose);
 
     // === Gráfica 2D con nuevas variables ===
     QChart *chartAll = new QChart();

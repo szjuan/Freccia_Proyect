@@ -1,6 +1,8 @@
 #include "FileHelper.h"
+
 #include <fstream>
 #include <filesystem>
+#include <QDateTime>
 
 bool FileHelper::exists(const std::string& path) {
     std::ifstream file(path);
@@ -55,4 +57,29 @@ void FileHelper::appendErrorData(const std::string& path, const SensorData& d, c
     file << d.latitude << "," << d.longitude << "," << d.date << "," << d.utc_time << ","
          << d.satellites << "," << d.hdop << "," << errorDetail << "\n";
     file.close();
+}
+
+void FileHelper::iniciarGrabacion() {
+    createDataDirectoryIfNeeded();
+
+    QString timestamp = QDateTime::currentDateTime().toString("yyyyMMdd_HHmmss");
+    rutaArchivoActual = "../data/rec_" + timestamp.toStdString() + ".csv";
+
+    archivoGrabacion.open(rutaArchivoActual, std::ios::out);
+    archivoGrabacion << "Latitud,Longitud,Fecha,Hora,Segundos,Satélites,HDOP,Roll,Pitch,Yaw,Servo1,Servo2,Servo3,Servo4,AltDiff,Presión,Temperatura\n";
+}
+
+void FileHelper::escribirDuranteGrabacion(const SensorData& d) {
+    if (archivoGrabacion.is_open()) {
+        archivoGrabacion << d.latitude << "," << d.longitude << "," << d.date << "," << d.utc_time << "," << d.secs << ","
+                         << d.satellites << "," << d.hdop << "," << d.Roll << "," << d.Pitch << "," << d.Yaw << ","
+                         << d.Servo1 << "," << d.Servo2 << "," << d.Servo3 << "," << d.Servo4 << "," << d.AltDiff << ","
+                         << d.pressure << "," << d.temperature << "\n";
+    }
+}
+
+void FileHelper::detenerGrabacion() {
+    if (archivoGrabacion.is_open()) {
+        archivoGrabacion.close();
+    }
 }

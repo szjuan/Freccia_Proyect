@@ -3,6 +3,7 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit
   C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/SensorManager.h \
   C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/SerialReader.h \
   C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/DataCleaner.h \
+  C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/FileHelper.h \
   C:/Users/santi/OneDrive/Documentos/Atenea_UI/Header_Files/data/SensorData.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCharts/QAbstractAxis \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCharts/QAbstractSeries \

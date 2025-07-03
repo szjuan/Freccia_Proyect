@@ -58,6 +58,12 @@ configure_file(
     COPYONLY
 )
 
+configure_file(
+    ${CMAKE_SOURCE_DIR}/assets/Menu.png
+    ${CMAKE_BINARY_DIR}/assets/Menu.png
+    COPYONLY
+)
+
 file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/assets/model)
 
 configure_file(

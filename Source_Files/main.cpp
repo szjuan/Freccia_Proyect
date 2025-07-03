@@ -1,6 +1,6 @@
 #include "widget.h"
 #include "Graph3DWindow.h"
-#include "InicioWindow.h"  // nueva pantalla
+#include "InicioWindow.h" 
 
 #include <QApplication>
 
@@ -19,6 +19,10 @@ int main(int argc, char *argv[]) {
             Widget* w = new Widget(manager);
             w->resize(1280, 720);
             w->show();
+
+            if (abrir3D) {
+                w->abrirVentana3DDesdeExterno();
+            }
         }
 
         if (abrir3D) {

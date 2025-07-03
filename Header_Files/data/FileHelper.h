@@ -2,8 +2,10 @@
 #define FILEHELPER_H
 
 #include "SensorData.h"
+
 #include <string>
 #include <vector>
+#include <fstream>
 
 class FileHelper {
 public:
@@ -14,6 +16,14 @@ public:
     static void appendCleanData(const std::string& path, const std::vector<SensorData>& data);
     static void appendErrorData(const std::string& path, const SensorData& data, const std::string& errorDetail);
     static void createDataDirectoryIfNeeded();
+
+    void iniciarGrabacion();
+    void escribirDuranteGrabacion(const SensorData& d);
+    void detenerGrabacion();
+
+private:
+    std::ofstream archivoGrabacion;
+    std::string rutaArchivoActual;
 };
 
 #endif

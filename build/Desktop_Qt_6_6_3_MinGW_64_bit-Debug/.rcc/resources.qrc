@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="/assets">
-    <file alias="assets/logo_xae.png">C:/Users/santi/OneDrive/Documentos/Atenea_UI/assets/logo_xae.png</file>
-    <file alias="assets/Inicio.gif">C:/Users/santi/OneDrive/Documentos/Atenea_UI/assets/Inicio.gif</file>
-  </qresource>
-</RCC>
-

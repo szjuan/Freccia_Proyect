@@ -1,5 +1,12 @@
 #include "widget.h"
 #include "Graph3DWindow.h"
+#include "data/FileHelper.h"
+
+#include <QMenu>
+#include <QWidgetAction>
+#include <QPushButton>
+#include <QMessageBox>
+
 #include <QGridLayout>
 #include <QLabel>
 #include <QChartView>
@@ -11,18 +18,223 @@
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QChart>
 
+static Widget* ventanaUnica = nullptr;
+Graph3DWindow* ventanaGraph3D = nullptr;
+
 Widget::Widget(SensorManager* manager, QWidget* parent)
     : QWidget(parent), m_sensorManager(manager) {
     
+    // === Verificación de instancia única ===
+    if (ventanaUnica && ventanaUnica != this) {
+        close();
+        return;
+    }
+    ventanaUnica = this;
+
     for (int i = 0; i < 6; ++i) labelStatus[i] = nullptr;
     for (int i = 0; i < 4; ++i) labelServos[i] = nullptr;
 
 
     setWindowTitle("FRECCIA_XAE - Gráficas 2D");
     setStyleSheet("background-color: black;");
-    QGridLayout* layout = new QGridLayout(this);
+    QGridLayout* layout = new QGridLayout();
     layout->setSpacing(2);
     setWindowIcon(QIcon("./assets/logo_xae.png"));
+
+    pantalla1Activa = true;
+    actualizarEstilosMenu();
+
+    // === Menu ===
+    QWidget* topBar = new QWidget();
+    topBar->setStyleSheet("background-color: black; color: white;");
+    topBar->setFixedHeight(30);
+
+    QHBoxLayout* topLayout = new QHBoxLayout(topBar);
+    topLayout->setContentsMargins(5, 0, 5, 0);
+
+    // === Botones ===
+    QPushButton* btnRecord = new QPushButton("● Grabar");
+    btnRecord->setStyleSheet(
+        "QPushButton { color: white; background-color: transparent; border: none; }"
+        "QPushButton:hover { background-color: #444; }"
+    );
+
+    QPushButton* btnStop = new QPushButton("■ Detener");
+    btnStop->setStyleSheet(
+        "QPushButton { color: white; background-color: transparent; border: none; }"
+        "QPushButton:hover { background-color: #444; }"
+    );
+
+    QPushButton* btnVerAntiguos = new QPushButton("Ver antiguos");
+    btnVerAntiguos->setStyleSheet(
+        "QPushButton { color: white; background-color: transparent; border: none; }"
+        "QPushButton:hover { background-color: #444; }"
+    );
+
+    // FileHelper inicializado
+    fileHelper = new FileHelper();
+
+    // === Conexión botón GRABAR ===
+    connect(btnRecord, &QPushButton::clicked, this, [this, btnRecord]() {
+        fileHelper->iniciarGrabacion();
+        btnRecord->setStyleSheet(
+            "QPushButton { color: red; background-color: transparent; border: none; }"
+            "QPushButton:hover { background-color: #444; }"
+        );
+    });
+
+    // === Conexión botón DETENER ===
+    connect(btnStop, &QPushButton::clicked, this, [this, btnStop, btnRecord]() {
+        fileHelper->detenerGrabacion();
+
+        // Cambia a rojo por 1.2 segundos
+        btnStop->setStyleSheet(
+            "QPushButton { color: red; background-color: transparent; border: none; }"
+            "QPushButton:hover { background-color: #444; }"
+        );
+
+        QTimer::singleShot(1200, this, [btnStop]() {
+            btnStop->setStyleSheet(
+                "QPushButton { color: white; background-color: transparent; border: none; }"
+                "QPushButton:hover { background-color: #444; }"
+            );
+        });
+
+        // Restaurar estilo de btnRecord
+        btnRecord->setStyleSheet(
+            "QPushButton { color: white; background-color: transparent; border: none; }"
+            "QPushButton:hover { background-color: #444; }"
+        );
+    });
+
+
+    QWidget* leftButtons = new QWidget();
+    QHBoxLayout* leftLayout = new QHBoxLayout(leftButtons);
+    leftLayout->setContentsMargins(0, 0, 0, 0);
+    leftLayout->addWidget(btnRecord);
+    leftLayout->addWidget(btnStop);
+    leftLayout->addWidget(btnVerAntiguos);
+
+    // === Tiempo ===
+    labelTiempo = new QLabel("Tiempo: 00:00:00");
+    labelTiempo->setAlignment(Qt::AlignCenter);
+    labelTiempo->setStyleSheet("color: white; font-weight: bold;");
+
+    // Menú desplegable y acciones
+   QPushButton* btnMenu = new QPushButton();
+    btnMenu->setIcon(QIcon("./assets/Menu.png"));
+    btnMenu->setIconSize(QSize(35, 35));
+    btnMenu->setStyleSheet("background-color: transparent; border: none;");
+
+    // Menú
+    QMenu* menuDesplegable = new QMenu(this);
+    menuDesplegable->setStyleSheet("QMenu { background-color: black; color: white; }"
+                                "QMenu::item:selected { background-color: #444; }");
+
+    btnMenu->setMenu(menuDesplegable);
+    // Acciones
+    pantalla1 = menuDesplegable->addAction("Pantalla Gráficas 2D");
+    pantalla2 = menuDesplegable->addAction("Pantalla Gráficas 3D y OSM");
+
+    // Estilo para el menú completo
+    menuDesplegable->setStyleSheet(R"(
+        QMenu {
+            background-color: black;
+            color: white;
+        }
+        QMenu::item {
+            padding: 6px 24px;
+            background-color: black;
+            color: white;
+        }
+        QMenu::item:disabled {
+            background-color: green;
+            color: white;
+        }
+        QMenu::item:selected:enabled {
+            background-color: #444;
+        }
+    )");
+
+    // === Detectar si ya está abierta ===
+    if (ventanaUnica && ventanaUnica != this) {
+            close();
+            return;
+        }
+        ventanaUnica = this;
+        pantalla1->setEnabled(false);
+        QObject::connect(this, &QWidget::destroyed, []() {
+            ventanaUnica = nullptr;
+    });
+
+    // === Boton Pantalla Gráficas 2D ===
+    connect(pantalla1, &QAction::triggered, this, [manager]() {
+        if (!ventanaUnica) {
+            ventanaUnica = new Widget(manager);
+            ventanaUnica->resize(1280, 720);
+            ventanaUnica->show();
+        } else {
+            ventanaUnica->raise();
+            ventanaUnica->activateWindow();
+        }
+    });
+
+    if (ventanaGraph3D) {
+        pantalla2->setEnabled(false);
+        pantalla1Activa = false;
+        actualizarEstilosMenu();
+    }
+    // === Botón Pantalla Gráficas 3D y OSM ===
+    connect(pantalla2, &QAction::triggered, this, [this, manager]() {
+        if (ventanaGraph3D) {
+            ventanaGraph3D->raise();
+            ventanaGraph3D->activateWindow();
+            return;
+        }
+
+        pantalla1Activa = false;
+        actualizarEstilosMenu();
+
+        pantalla2->setEnabled(false);
+
+        ventanaGraph3D = new Graph3DWindow(manager);
+        ventanaGraph3D->setAttribute(Qt::WA_DeleteOnClose);
+        ventanaGraph3D->resize(1280, 720);
+        ventanaGraph3D->show();
+
+        connect(ventanaGraph3D, &QWidget::destroyed, this, [this]() {
+            pantalla2->setEnabled(true);
+            actualizarEstilosMenu();
+            ventanaGraph3D = nullptr;
+        });
+    });
+
+    menuDesplegable->addSeparator();
+    QAction* configCom = menuDesplegable->addAction("Configurar COM");
+    QAction* configBaud = menuDesplegable->addAction("Configurar Baud");
+    QAction* configAcc = menuDesplegable->addAction("Calibrar Acelerómetro");
+    QAction* configGyro = menuDesplegable->addAction("Calibrar Giroscopio");
+    menuDesplegable->addSeparator();
+    QWidgetAction* cerrarWidgetAction = new QWidgetAction(this);
+    QPushButton* cerrarBtn = new QPushButton("Close the program");
+    cerrarBtn->setStyleSheet("color: white; background-color: red; border: none; padding: 4px;");
+    cerrarWidgetAction->setDefaultWidget(cerrarBtn);
+    menuDesplegable->addAction(cerrarWidgetAction);
+
+    btnMenu->setMenu(menuDesplegable);
+
+    // === Añadir a layout superior ===
+    topLayout->addWidget(leftButtons);
+    topLayout->addStretch();
+    topLayout->addWidget(labelTiempo);
+    topLayout->addStretch();
+    topLayout->addWidget(btnMenu);
+
+    // === Añadir barra al layout principal ===
+    QVBoxLayout* globalLayout = new QVBoxLayout(this);
+    globalLayout->setContentsMargins(0, 0, 0, 0);
+    globalLayout->addWidget(topBar);
+    globalLayout->addLayout(layout);
 
     auto crearGrafica = [&](QChart*& chart, QLineSeries*& series, QChartView*& view,
                         QLabel*& label, QValueAxis*& ejeX, QValueAxis*& ejeY,
@@ -140,7 +352,7 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     gridEstado->setSpacing(8);
     gridEstado->setContentsMargins(0, 0, 0, 0);
 
-    QStringList campos = {"Conexión", "Inicio", "Paracaídas", "Fecha UTC", "Fecha PC", "Hora"};
+    QStringList campos = {"Conexión", "Tiempo Para Inicio", "Paracaídas", "Fecha Satélital", "Fecha Local", "Hora Local"};
 
     for (int i = 0; i < campos.size(); ++i) {
     QFrame* card = new QFrame();
@@ -255,12 +467,12 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
         labelServos[2]->setText(QString::number(d.Servo3) + "°");
         labelServos[3]->setText(QString::number(d.Servo4) + "°");
 
-        labelStatus[0]->setText("Conexión: OK");
-        labelStatus[1]->setText("Inicio: Recibido");
-        labelStatus[2]->setText("Paracaídas: N/A");
-        labelStatus[3]->setText("Fecha UTC: " + QString::fromStdString(d.date));
-        labelStatus[4]->setText("Fecha PC: " + QDate::currentDate().toString("yyyy-MM-dd"));
-        labelStatus[5]->setText("Hora: " + QTime::currentTime().toString("hh:mm:ss"));
+        labelStatus[0]->setText("Estable - 3");
+        labelStatus[1]->setText("Inicializado");
+        labelStatus[2]->setText("N/A");
+        labelStatus[3]->setText(QString::fromStdString(d.date));
+        labelStatus[4]->setText(QDate::currentDate().toString("dd-MMMM-yyyy"));
+        labelStatus[5]->setText(QTime::currentTime().toString("hh:mm:ss"));
 
         labelRaw->setText("Paquete: " +
             QString::number(d.latitude) + "," +
@@ -280,8 +492,82 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
             QString::number(d.AltDiff)
         );
 
+       timeoutTimer->start();
+
+        if (!tiempoIniciado) {
+            tiempoInicio = QTime::currentTime();
+            tiempoIniciado = true;
+            timer->start(1000);
+        } else if (!timer->isActive()) {
+            timer->start(1000);
+            qDebug() << "Señal recuperada. Reanudando cronómetro.";
+        }
+
         ++t;
+
+        procesarDatos(d);
     });
+    
+    this->timer = new QTimer(this);
+    timeoutTimer = new QTimer(this);
+    timeoutTimer->setInterval(30000);
+    timeoutTimer->setSingleShot(true);
+
+    connect(timer, &QTimer::timeout, this, [this]() {
+            int secs = tiempoInicio.secsTo(QTime::currentTime());
+            QTime t(0, 0);
+            t = t.addSecs(secs);
+            labelTiempo->setText("Tiempo: " + t.toString("hh:mm:ss"));
+        });
+    
+    connect(timeoutTimer, &QTimer::timeout, this, [this]() {
+        qWarning() << "No se han recibido datos en 20 segundos. Deteniendo el contador.";
+        if (timer->isActive()) {
+            timer->stop();
+            labelTiempo->setText("Señal perdida. Cronómetro detenido.");
+        }
+    });
+
+    connect(cerrarBtn, &QPushButton::clicked, this, []() {
+            QMessageBox msgBox;
+            msgBox.setIcon(QMessageBox::Critical);
+            msgBox.setWindowTitle("Exit Confirmation");
+            msgBox.setText("Are you sure about closing the program?");
+            msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            msgBox.setDefaultButton(QMessageBox::No);
+
+            msgBox.setWindowIcon(QIcon("./assets/logo_xae.png"));
+
+            int reply = msgBox.exec();
+            if (reply == QMessageBox::Yes)
+                QCoreApplication::quit();
+        });
+    pantalla1Activa = true;
+    actualizarEstilosMenu();
+}
+
+void Widget::actualizarEstilosMenu() {
+    if (pantalla1 && pantalla2) {
+        pantalla1->setIcon(pantalla1Activa ? QIcon(":/icons/activo.png") : QIcon());
+    pantalla2->setIcon(!pantalla1Activa ? QIcon(":/icons/activo.png") : QIcon());
+    }
+}
+
+void Widget::abrirVentana3DDesdeExterno() {
+    if (ventanaGraph3D) return;
+    pantalla2->setEnabled(false);
+    actualizarEstilosMenu();
+
+    connect(ventanaGraph3D, &QWidget::destroyed, this, [this]() {
+        pantalla2->setEnabled(true);
+        actualizarEstilosMenu();
+        ventanaGraph3D = nullptr;
+    });
+}
+
+void Widget::procesarDatos(const SensorData& data) {
+
+    fileHelper->escribirDuranteGrabacion(data);
 }
 
 Widget::~Widget() {}
