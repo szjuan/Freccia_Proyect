@@ -2,6 +2,7 @@
 #define GRAPH3DWINDOW_H
 
 #include "SensorManager.h"
+#include "DataRepository.h"
 
 // Qt Widgets y Layouts
 #include <QWidget>
@@ -44,6 +45,9 @@ public:
 private:
     void aplicarEstiloGrafico(QChart* chart, QValueAxis* axisX, QValueAxis* axisY);
     SensorManager* m_sensorManager = nullptr;
+
+    // === Datos de sensor manager lectura pasada y actuales ===
+    DataRepository* m_dataRepo;
 
     // === Layout principal ===
     QGridLayout* mainLayout;

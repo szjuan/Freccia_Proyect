@@ -1,5 +1,6 @@
 #include "widget.h"
 #include "Graph3DWindow.h"
+#include "DataRepository.h"
 #include "data/FileHelper.h"
 
 #include <QMenu>
@@ -511,9 +512,10 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
     estadoWidget->setLayout(estadoFinal);
     layout->addWidget(estadoWidget, 2, 3);
     qDebug() << "estadoWidget agregado al layout";
+    m_dataRepo = DataRepository::instance();
 
     // === Datos en tiempo real ===
-    connect(m_sensorManager, &SensorManager::newSensorData, this, [&](const SensorData& d) {
+    connect(m_dataRepo, &DataRepository::newData, this, [&](const SensorData& d) {
         static int t = 0;
 
         qDebug() << "Recibiendo datos del sensor...";
@@ -632,7 +634,7 @@ Widget::Widget(SensorManager* manager, QWidget* parent)
 void Widget::actualizarEstilosMenu() {
     if (pantalla1 && pantalla2) {
         pantalla1->setIcon(pantalla1Activa ? QIcon(":/icons/activo.png") : QIcon());
-    pantalla2->setIcon(!pantalla1Activa ? QIcon(":/icons/activo.png") : QIcon());
+        pantalla2->setIcon(!pantalla1Activa ? QIcon(":/icons/activo.png") : QIcon());
     }
 }
 

@@ -1,5 +1,6 @@
 #include "Graph3DWindow.h"
 #include "SensorData.h"
+#include "DataRepository.h"
 
 #include <QVBoxLayout>
 #include <QGridLayout>
@@ -246,9 +247,10 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
     mainLayout->addWidget(llmap,   1, 0);
     mainLayout->addWidget(container3DModel, 1, 1);
     setLayout(mainLayout);
+    m_dataRepo = DataRepository::instance();
 
     // === Conexión de datos ===
-    connect(m_sensorManager, &SensorManager::newSensorData, this, [=](const SensorData& d) {
+    connect(m_dataRepo, &DataRepository::newData, this, [&](const SensorData& d) {
         seriesLat->append(xIndex2D, d.latitude);
         seriesLon->append(xIndex2D, d.longitude);
         seriesRoll->append(xIndex2D, d.Roll);

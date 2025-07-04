@@ -1,0 +1,24 @@
+# ninja log v6
+33	340	7732965569190148	GUI_FRECCIA_autogen/timestamp	4b81908289055732
+11833	19709	7732930188881980	CMakeFiles/GUI_FRECCIA.dir/Source_Files/InicioWindow.cpp.obj	11c36fcf9b1142a0
+33	340	7732965569190148	GUI_FRECCIA_autogen/mocs_compilation.cpp	4b81908289055732
+33	340	7732965569190148	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/GUI_FRECCIA_autogen/timestamp	4b81908289055732
+4557	5307	7732965614422158	GUI_FRECCIA.exe	8699b0b02935ba4d
+33	340	7732965569190148	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/GUI_FRECCIA_autogen/mocs_compilation.cpp	4b81908289055732
+341	4556	7732965572266385	CMakeFiles/GUI_FRECCIA.dir/Source_Files/Graph3DWindow.cpp.obj	b218dc428889ee74
+11333	18579	7732930183885560	CMakeFiles/GUI_FRECCIA.dir/Source_Files/SerialReader.cpp.obj	c31cbe8927831bc6
+335	1995	7732935316519360	CMakeFiles/GUI_FRECCIA.dir/Source_Files/SensorManager.cpp.obj	4ee319b4a847dcf2
+12012	19276	7732930190672490	CMakeFiles/GUI_FRECCIA.dir/Source_Files/data/DataCleaner.cpp.obj	e4ac5b9bc2ec051c
+12248	19715	7732930193033107	CMakeFiles/GUI_FRECCIA.dir/Source_Files/data/FileHelper.cpp.obj	4a3a35d65a31cbf7
+3241	9103	7732945811798451	CMakeFiles/GUI_FRECCIA.dir/Source_Files/main.cpp.obj	ac0ca7b319739db8
+3218	9251	7732945811563362	CMakeFiles/GUI_FRECCIA.dir/GUI_FRECCIA_autogen/mocs_compilation.cpp.obj	95b6eaa3cc762093
+22	1174	7732930500543446	build.ninja	6179837d2042a496
+359	3292	7732957339885468	CMakeFiles/GUI_FRECCIA.dir/Source_Files/DataRepository.cpp.obj	97edf2a8f9af185a
+339	4669	7732950560587016	CMakeFiles/GUI_FRECCIA.dir/Source_Files/widget.cpp.obj	a9b4614595ef97b4
+36	344	7732966712641786	GUI_FRECCIA_autogen/timestamp	4b81908289055732
+36	344	7732966712641786	GUI_FRECCIA_autogen/mocs_compilation.cpp	4b81908289055732
+36	344	7732966712641786	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/GUI_FRECCIA_autogen/timestamp	4b81908289055732
+36	344	7732966712641786	C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/GUI_FRECCIA_autogen/mocs_compilation.cpp	4b81908289055732
+344	4994	7732966715717612	CMakeFiles/GUI_FRECCIA.dir/Source_Files/widget.cpp.obj	a9b4614595ef97b4
+368	5228	7732966715957681	CMakeFiles/GUI_FRECCIA.dir/Source_Files/Graph3DWindow.cpp.obj	b218dc428889ee74
+5229	5986	7732966764567268	GUI_FRECCIA.exe	8699b0b02935ba4d

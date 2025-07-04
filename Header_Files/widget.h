@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include "SensorManager.h"
+#include "DataRepository.h"
 #include "data/FileHelper.h"
 
 class Graph3DWindow;
@@ -36,6 +37,9 @@ public:
 
 private:
     int xIndex = 0;
+    
+    // === Datos de sensor manager lectura pasada y actuales ===
+    DataRepository* m_dataRepo;
 
     // Referencias a SensorManager y Graph3DWindow
     SensorManager* m_sensorManager = nullptr;

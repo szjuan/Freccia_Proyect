@@ -1,4 +1,6 @@
 #include "SensorManager.h"
+#include "DataRepository.h"
+
 #include <QStringList>
 #include <QTimer>
 
@@ -43,6 +45,7 @@ void SensorManager::processRawData(const QByteArray& line) {
         // Limpieza y almacenamiento automático
         cleaner.clean(vectorData);
 
+        DataRepository::instance()->agregarDatoEnVivo(sensor);
         emit newSensorData(sensor);
     } catch (...) {
         // Ignorar errores de conversión
