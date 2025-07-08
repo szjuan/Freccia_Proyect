@@ -67,6 +67,7 @@
 #define __FLT128_DENORM_MIN__ 6.47517511943802511092443895822764655e-4966F128
 #define __UINTMAX_TYPE__ long long unsigned int
 #define __DEC32_EPSILON__ 1E-6DF
+#define QT_3DANIMATION_LIB 1
 #define __FLT_EVAL_METHOD_TS_18661_3__ 0
 #define __UINT32_MAX__ 0xffffffffU
 #define __GXX_EXPERIMENTAL_CXX0X__ 1
@@ -117,6 +118,7 @@
 #define __INT16_MAX__ 0x7fff
 #define __FLT64_MIN_EXP__ (-1021)
 #define __FLT64X_MIN_10_EXP__ (-4931)
+#define QT_3DRENDER_LIB 1
 #define __LDBL_HAS_QUIET_NAN__ 1
 #define __FLT64_MANT_DIG__ 53
 #define _REENTRANT 1
@@ -211,6 +213,7 @@
 #define __FLT_MANT_DIG__ 24
 #define __LDBL_DECIMAL_DIG__ 21
 #define __VERSION__ "11.2.0"
+#define QT_3DCORE_LIB 1
 #define __UINT64_C(c) c ## ULL
 #define __cpp_unicode_characters 201411L
 #define _WIN32 1
@@ -231,6 +234,7 @@
 #define __DEC128_MIN_EXP__ (-6142)
 #define QT_OPENGLWIDGETS_LIB 1
 #define __INT_FAST32_TYPE__ int
+#define QT_CONCURRENT_LIB 1
 #define __UINT_LEAST16_TYPE__ short unsigned int
 #define __DBL_HAS_DENORM__ 1
 #define __cpp_rtti 199711L
@@ -251,6 +255,7 @@
 #define __SIG_ATOMIC_MAX__ 0x7fffffff
 #define __GCC_ATOMIC_WCHAR_T_LOCK_FREE 2
 #define __SIZEOF_PTRDIFF_T__ 8
+#define QT_3DINPUT_LIB 1
 #define __LDBL_DIG__ 18
 #define __FLT64_IS_IEC_60559__ 2
 #define __x86_64__ 1
@@ -258,6 +263,7 @@
 #define __DEC32_SUBNORMAL_MIN__ 0.000001E-95DF
 #define __MSVCRT__ 1
 #define __INT_FAST16_MAX__ 0x7fff
+#define QT_3DLOGIC_LIB 1
 #define __FLT64_DIG__ 15
 #define __UINT_FAST32_MAX__ 0xffffffffU
 #define __UINT_LEAST64_TYPE__ long long unsigned int
@@ -279,6 +285,7 @@
 #define __INT_LEAST16_MAX__ 0x7fff
 #define __DEC64_MANT_DIG__ 16
 #define __INT64_MAX__ 0x7fffffffffffffffLL
+#define QT_NETWORK_LIB 1
 #define __SEG_GS 1
 #define __FLT32_DENORM_MIN__ 1.40129846432481707092372958328991613e-45F32
 #define __SIG_ATOMIC_WIDTH__ 32
@@ -382,6 +389,7 @@
 #define __FXSR__ 1
 #define __FLT32X_MAX__ 1.79769313486231570814527423731704357e+308F32x
 #define __DBL_NORM_MAX__ double(1.79769313486231570814527423731704357e+308L)
+#define QT_3DEXTRAS_LIB 1
 #define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
 #define __MINGW64__ 1
 #define __INTMAX_WIDTH__ 64

@@ -358,7 +358,7 @@ Graph3DWindow::Graph3DWindow(SensorManager* manager, QWidget* parent)
             }
         }
 
-        // === Gráfico 3D ===
+         // === Gráfico 3D ===
         QVector3D pos(d.longitude, xIndex3D, d.latitude);
         pointHistory.append(pos);
 

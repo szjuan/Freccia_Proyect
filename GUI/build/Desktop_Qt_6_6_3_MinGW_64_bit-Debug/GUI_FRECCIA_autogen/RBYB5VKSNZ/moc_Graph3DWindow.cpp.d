@@ -1,9 +1,30 @@
-C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/GUI_FRECCIA_autogen/RBYB5VKSNZ/moc_Graph3DWindow.cpp: C:/Users/santi/Music/Atenea_UI/Header_Files/Graph3DWindow.h \
-  C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/GUI_FRECCIA_autogen/moc_predefs.h \
-  C:/Users/santi/Music/Atenea_UI/Header_Files/SensorManager.h \
-  C:/Users/santi/Music/Atenea_UI/Header_Files/SerialReader.h \
-  C:/Users/santi/Music/Atenea_UI/Header_Files/data/DataCleaner.h \
-  C:/Users/santi/Music/Atenea_UI/Header_Files/data/SensorData.h \
+C:/Users/santi/OneDrive/Documentos/Freccia_Proyect/GUI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/GUI_FRECCIA_autogen/RBYB5VKSNZ/moc_Graph3DWindow.cpp: C:/Users/santi/OneDrive/Desktop/Freccia_Proyect-2e53c529396e7e4ffb6b446ee5f77d022371f639/Freccia_Proyect-2e53c529396e7e4ffb6b446ee5f77d022371f639/Header_Files/Graph3DWindow.h \
+  C:/Users/santi/OneDrive/Documentos/Freccia_Proyect/GUI/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/GUI_FRECCIA_autogen/moc_predefs.h \
+  C:/Users/santi/OneDrive/Desktop/Freccia_Proyect-2e53c529396e7e4ffb6b446ee5f77d022371f639/Freccia_Proyect-2e53c529396e7e4ffb6b446ee5f77d022371f639/Header_Files/SensorManager.h \
+  C:/Users/santi/OneDrive/Desktop/Freccia_Proyect-2e53c529396e7e4ffb6b446ee5f77d022371f639/Freccia_Proyect-2e53c529396e7e4ffb6b446ee5f77d022371f639/Header_Files/SerialReader.h \
+  C:/Users/santi/OneDrive/Desktop/Freccia_Proyect-2e53c529396e7e4ffb6b446ee5f77d022371f639/Freccia_Proyect-2e53c529396e7e4ffb6b446ee5f77d022371f639/Header_Files/data/DataCleaner.h \
+  C:/Users/santi/OneDrive/Desktop/Freccia_Proyect-2e53c529396e7e4ffb6b446ee5f77d022371f639/Freccia_Proyect-2e53c529396e7e4ffb6b446ee5f77d022371f639/Header_Files/data/SensorData.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DCore/QEntity \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DCore/QTransform \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DCore/qcomponent.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DCore/qentity.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DCore/qnode.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DCore/qnodeid.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DCore/qt3dcore-config.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DCore/qt3dcore_global.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DCore/qtransform.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DExtras/QOrbitCameraController \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DExtras/Qt3DWindow \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DExtras/qabstractcameracontroller.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DExtras/qorbitcameracontroller.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DExtras/qt3dextras_global.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DExtras/qt3dwindow.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DRender/QCamera \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DRender/qcamera.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DRender/qcameralens.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DRender/qrenderapi.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DRender/qt3drender-config.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/Qt3DRender/qt3drender_global.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCharts/QAbstractAxis \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCharts/QAbstractSeries \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCharts/QChart \
@@ -24,10 +45,14 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCharts/qtchartsexports.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCharts/qvalueaxis.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCharts/qxyseries.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QCoreApplication \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QDebug \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QEvent \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QHashFunctions \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QList \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QLocale \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QMargins \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QMetaType \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QObject \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QPoint \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/QRect \
@@ -67,10 +92,13 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qcontainerinfo.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qcontainertools_impl.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qcontiguouscache.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qcoreevent.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qdarwinhelpers.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qdatastream.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qdebug.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qeventloop.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qexceptionhandling.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qflags.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtCore/qfloat16.h \
@@ -187,6 +215,7 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/QFont \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/QImage \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/QLinearGradient \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/QMatrix4x4 \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/QMouseEvent \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/QOpenGLFunctions \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/QPen \
@@ -212,6 +241,7 @@ C:/Users/santi/OneDrive/Documentos/Atenea_UI/build/Desktop_Qt_6_6_3_MinGW_64_bit
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/qimage.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/qinputdevice.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/qkeysequence.h \
+  D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/qmatrix4x4.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/qopengl.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/qopenglcontext.h \
   D:/ProgramFiles/Qt/6.6.3/mingw_64/include/QtGui/qopenglcontext_platform.h \
